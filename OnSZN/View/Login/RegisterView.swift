@@ -34,12 +34,14 @@ struct RegisterView: View {
     @AppStorage("user_UID") var userUID: String = ""
     var body:some View {
         VStack(spacing:10) {
-            Text("Lets register the \nAccount")
+            Text("Lets register the \naccount")
                 .font(.largeTitle.bold())
+                .foregroundColor(.oxfordBlue)
                 .hAlign(.leading)
             
             Text("Hello user, Have a wonderful journey!")
                 .font(.title3)
+                .foregroundColor(.oxfordBlue)
                 .hAlign(.leading)
             
             //MARK: Optimize Size
@@ -58,7 +60,7 @@ struct RegisterView: View {
                     dismiss ()
                 }
                 .fontWeight(.bold)
-                .foregroundColor(.black)
+                .foregroundColor(.cgBlue)
             }
             .font(.callout)
             .vAlign(.bottom)
@@ -94,9 +96,11 @@ struct RegisterView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                 } else {
-                    Image("NullProfile.png")
+                    Image("NullProfile")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
                 }
             }
             .frame(width: 85, height: 85)
@@ -109,31 +113,31 @@ struct RegisterView: View {
             
             TextField("Username", text:$userName)
                 .textContentType(.emailAddress)
-                .border(1, .gray.opacity(0.5))
+                .border(1, .cgBlue.opacity(0.5))
             
             TextField("Email", text:$emailID)
                 .textContentType(.emailAddress)
-                .border(1, .gray.opacity(0.5))
+                .border(1, .cgBlue.opacity(0.5))
             
             SecureField("Password", text:$password)
                 .textContentType(.emailAddress)
-                .border(1, .gray.opacity(0.5))
+                .border(1, .cgBlue.opacity(0.5))
             
             TextField("About You", text:$userBio, axis: .vertical)
                 .frame(minHeight: 100, alignment: .top)
                 .textContentType(.emailAddress)
-                .border(1, .gray.opacity(0.5))
+                .border(1, .cgBlue.opacity(0.5))
             
             TextField("Bio Link (Optional)", text:$userBioLink)
                 .textContentType(.emailAddress)
-                .border(1, .gray.opacity(0.5))
+                .border(1, .cgBlue.opacity(0.5))
             
             Button(action: registerUser) {
                 //MARK: Login Button
                 Text("Sign up")
                     .foregroundColor(.white)
                     .hAlign(.center)
-                    .fillView(.black)
+                    .fillView(.oxfordBlue)
             }
             .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
             .padding(.top,10)

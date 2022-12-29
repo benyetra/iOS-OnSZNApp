@@ -29,7 +29,7 @@ struct ReusablePostsView: View {
                         ///No Post's found on firestore
                         Text("No Post's Found")
                             .font(.caption)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.cgBlue)
                             .padding(.top, 30)
                     } else {
                         /// - Displaying Post's

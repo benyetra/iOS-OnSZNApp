@@ -18,12 +18,12 @@ struct MainView: View {
                 }
             ProfileView()
                 .tabItem{
-                    Image(systemName: "gear")
+                    Image(systemName: "person.fill")
                     Text("Profile")
                 }
         }
         //Changing Tab Label Tint to Black
-        .tint(.black)
+        .tint(.oxfordBlue)
     }
 }
 

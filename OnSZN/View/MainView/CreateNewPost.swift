@@ -39,7 +39,7 @@ struct CreateNewPost: View {
                 } label: {
                     Text("Cancel")
                         .font(.callout)
-                        .foregroundColor(.black)
+                        .foregroundColor(.oxfordBlue)
                 }
                 .hAlign(.leading)
                 
@@ -49,7 +49,7 @@ struct CreateNewPost: View {
                         .foregroundColor(.white)
                         .padding(.horizontal,20)
                         .padding(.vertical,6)
-                        .background(.black,in: Capsule())
+                        .background(Color.oxfordBlue,in: Capsule())
                 }
                 .disableWithOpacity(postText == "")
             }
@@ -102,7 +102,7 @@ struct CreateNewPost: View {
                 } label: {
                     Image(systemName: "photo.on.rectangle")
                         .font(.title3)
-                        .foregroundColor(.black)
+                        .foregroundColor(.oxfordBlue)
                 }
                 .hAlign(.leading)
                 
@@ -110,7 +110,7 @@ struct CreateNewPost: View {
                     showKeyboard = false
                 }
             }
-            .foregroundColor(.black)
+            .foregroundColor(.oxfordBlue)
             .padding(.horizontal, 15)
             .padding(.vertical,10)
         }

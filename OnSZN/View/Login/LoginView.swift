@@ -28,26 +28,28 @@ struct LoginView: View {
         VStack(spacing:10) {
             Text("Lets sign you in!")
                 .font(.largeTitle.bold())
+                .foregroundColor(.oxfordBlue)
                 .hAlign(.leading)
             
             Text("Welcome back, \nYou have been missed!")
                 .font(.title3)
+                .foregroundColor(.oxfordBlue)
                 .hAlign(.leading)
             
             VStack(spacing:12){
                 TextField("Email", text:$emailID)
                     .textContentType(.emailAddress)
-                    .border(1, .gray.opacity(0.5))
+                    .border(1, .cgBlue.opacity(0.5))
                     .padding(.top,25)
                 
                 SecureField("Password", text:$password)
                     .textContentType(.emailAddress)
-                    .border(1, .gray.opacity(0.5))
+                    .border(1, .cgBlue.opacity(0.5))
                 
                 Button("Reset Password?", action:resetPassword)
                     .font(.callout)
                     .fontWeight(.medium)
-                    .tint(.black)
+                    .tint(.cgBlue)
                     .hAlign(.trailing)
                 
                 Button(action: loginUser) {
@@ -55,7 +57,7 @@ struct LoginView: View {
                     Text("Sign in")
                         .foregroundColor(.white)
                         .hAlign(.center)
-                        .fillView(.black)
+                        .fillView(.oxfordBlue)
                 }
                 .padding(.top,10)
             }
@@ -68,7 +70,7 @@ struct LoginView: View {
                     createAccount.toggle()
                 }
                 .fontWeight(.bold)
-                .foregroundColor(.black)
+                .foregroundColor(.cgBlue)
             }
             .font(.callout)
             .vAlign(.bottom)

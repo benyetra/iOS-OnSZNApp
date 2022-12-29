@@ -19,6 +19,7 @@ struct SearchUserView: View {
                     ReusableProfileContent(user: user)
                 } label: {
                     Text(user.username)
+                        .foregroundColor(.oxfordBlue)
                         .font(.callout)
                         .hAlign(.leading)
                 }
@@ -26,7 +27,7 @@ struct SearchUserView: View {
         }
         .listStyle(.plain)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Search Users")
+        .navigationTitle("Search Users").foregroundColor(.oxfordBlue)
         .searchable(text: $searchText)
         .onSubmit(of: .search, {
             Task {await searchUsers()}
