@@ -38,7 +38,7 @@ struct ReusableProfileContent: View {
                         
                         Text(user.userBio)
                             .font(.caption)
-                            .foregroundColor(.cgBlue)
+                            .foregroundColor(.gray)
                             .lineLimit(3)
                         
                         //MARK: Displaying Bio Link, If Given While Signing Up Profile Page

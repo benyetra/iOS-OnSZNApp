@@ -135,6 +135,7 @@ struct RegisterView: View {
                 .border(1, .cgBlue.opacity(0.5))
             
             TextField("Bio Link (Optional)", text:$userBioLink)
+                .foregroundColor(.gray)
                 .textContentType(.URL)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
@@ -181,7 +182,7 @@ struct RegisterView: View {
                     }
                 })
             } catch {
-                // MARK: Deleting Created Account In CAse of Failure
+                // MARK: Deleting Created Account In Case of Failure
                 try await Auth.auth().currentUser?.delete()
                 await setError(error)
             }
