@@ -32,7 +32,7 @@ struct ProfileView: View {
                     ProgressView()
                 }
             }
-            .navigationTitle("My Profile")
+            .navigationTitle("My Profile").foregroundColor(.oxfordBlue)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
@@ -44,7 +44,7 @@ struct ProfileView: View {
                     } label: {
                         Image(systemName: "ellipsis")
                             .rotationEffect(.init(degrees: 90))
-                            .tint(.black)
+                            .tint(.oxfordBlue)
                             .scaleEffect(0.8)
                     }
                 }
@@ -74,6 +74,7 @@ struct ProfileView: View {
     
     //MARK: Logging User Out
     func logOutUser() {
+        isLoading = true
         try? Auth.auth().signOut()
         logStatus = false
     }

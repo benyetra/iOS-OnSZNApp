@@ -26,15 +26,19 @@ struct PostCardView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 35, height: 35)
                 .clipShape(Circle())
+                .foregroundColor(.oxfordBlue)
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(post.userName)
+                    .foregroundColor(.oxfordBlue)
                     .font(.callout)
                     .fontWeight(.semibold)
                 Text(post.publishedDate.formatted(date: .numeric, time: .shortened))
+                    .foregroundColor(.cgBlue)
                     .font(.caption)
                     .foregroundColor(.gray)
                 Text(post.text)
+                    .foregroundColor(.oxfordBlue)
                     .textSelection(.enabled)
                     .padding(.vertical, 8)
                 
@@ -44,6 +48,7 @@ struct PostCardView: View {
                         let size = $0.size
                         WebImage(url: postImageURL)
                             .resizable()
+                            .foregroundColor(.oxfordBlue)
                             .aspectRatio(contentMode: .fill)
                             .frame(width: size.width, height: size.height)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -63,7 +68,7 @@ struct PostCardView: View {
                     Image(systemName: "ellipsis")
                         .font(.caption)
                         .rotationEffect(.init(degrees: -90))
-                        .foregroundColor(.black)
+                        .foregroundColor(.oxfordBlue)
                         .padding(8)
                         .contentShape(Rectangle())
                 }
@@ -105,21 +110,21 @@ struct PostCardView: View {
     func PostInteraction()->some View {
         HStack(spacing: 6) {
             Button(action: likePost) {
-                Image(systemName: post.likedIDs.contains(userUID) ? "hand.thumbsup.fill" : "hand.thumbsup")
+                Image(systemName: post.likedIDs.contains(userUID) ? "hand.thumbsup.fill" : "hand.thumbsup").foregroundColor(.oxfordBlue)
             }
             Text("\(post.likedIDs.count)")
                 .font(.caption)
                 .foregroundColor(.gray)
             
             Button(action: dislikePost) {
-                Image(systemName: post.dislikedIDs.contains(userUID) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                Image(systemName: post.dislikedIDs.contains(userUID) ? "hand.thumbsdown.fill" : "hand.thumbsdown").foregroundColor(.oxfordBlue)
             }
             .padding(.leading, 25)
             Text("\(post.dislikedIDs.count)")
                 .font(.caption)
-                .foregroundColor(.gray)
+                .foregroundColor(.platinum)
         }
-        .foregroundColor(.black)
+        .foregroundColor(.oxfordBlue)
         .padding(.vertical, 8)
     }
     

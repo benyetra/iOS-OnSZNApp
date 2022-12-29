@@ -21,9 +21,9 @@ struct PostsView: View {
                         Image(systemName: "plus")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                            .foregroundColor(.platinum)
                             .padding(13)
-                            .background(.black, in: Circle())
+                            .background(Color.oxfordBlue, in: Circle())
                     }
                     .padding(15)
                 }
@@ -33,12 +33,12 @@ struct PostsView: View {
                             SearchUserView()
                         } label: {
                             Image(systemName: "magnifyingglass")
-                                .tint(.black)
+                                .tint(.oxfordBlue)
                                 .scaleEffect(0.9)
                         }
                     }
                 })
-                .navigationTitle("Post's")
+                .navigationTitle("Post's").foregroundColor(.oxfordBlue)
         }
         .fullScreenCover(isPresented: $createNewPost) {
             CreateNewPost { post in

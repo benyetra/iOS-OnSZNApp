@@ -24,21 +24,25 @@ struct ReusableProfileContent: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
+
                     
                     VStack(alignment: .leading, spacing: 6) {
                         Text(user.username)
                             .font(.title3)
                             .fontWeight(.semibold)
+                            .foregroundColor(.oxfordBlue)
                         
                         Text(user.userBio)
                             .font(.caption)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.cgBlue)
                             .lineLimit(3)
                         
                         //MARK: Displaying Bio Link, If Given While Signing Up Profile Page
                         if let bioLink = URL(string: user.userBioLink) {
                             Link(user.userBioLink, destination: bioLink)
                                 .font(.callout)
+                                .foregroundColor(.cgBlue)
                                 .tint(.blue)
                                 .lineLimit(1)
                         }
@@ -48,7 +52,7 @@ struct ReusableProfileContent: View {
                 Text ("Post's")
                     .font(.title2)
                     .fontWeight(.semibold)
-                    .foregroundColor(.black)
+                    .foregroundColor(.oxfordBlue)
                     .hAlign(.leading)
                     .padding(.vertical,15)
                 
