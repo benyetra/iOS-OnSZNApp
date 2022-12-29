@@ -18,7 +18,8 @@ struct PostCardView: View {
     ///View Properties
     @AppStorage("user_UID") var userUID: String = ""
     @State private var docListner: ListenerRegistration?
-    
+    @State private var showLightbox = false
+
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             WebImage(url: post.userProfileURL)
@@ -52,11 +53,23 @@ struct PostCardView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: size.width, height: size.height)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .onTapGesture {
+                                self.showLightbox = true
+                            }
                     }
                     .frame(height: 200)
                 }
+                    
                 PostInteraction()
             }
+        }
+        .sheet(isPresented: $showLightbox) {
+            WebImage(url: post.imageURL)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .onTapGesture {
+                    self.showLightbox = false
+                }
         }
         .hAlign(.leading)
         .overlay(alignment: .topTrailing, content: {
