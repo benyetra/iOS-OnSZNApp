@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct ReusableProfileContent: View {
     var user: User
     @State private var fetchedPosts: [Post] = []
+    @State private var showLightbox = false
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack{
@@ -25,8 +26,10 @@ struct ReusableProfileContent: View {
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
-
-                    
+                    .onTapGesture {
+                        self.showLightbox = true
+                    }
+                                        
                     VStack(alignment: .leading, spacing: 6) {
                         Text(user.username)
                             .font(.title3)
@@ -35,7 +38,7 @@ struct ReusableProfileContent: View {
                         
                         Text(user.userBio)
                             .font(.caption)
-                            .foregroundColor(.cgBlue)
+                            .foregroundColor(.gray)
                             .lineLimit(3)
                         
                         //MARK: Displaying Bio Link, If Given While Signing Up Profile Page
@@ -46,6 +49,14 @@ struct ReusableProfileContent: View {
                                 .tint(.blue)
                                 .lineLimit(1)
                         }
+                    }
+                    .sheet(isPresented: $showLightbox) {
+                        WebImage(url: self.user.userProfileURL)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .onTapGesture {
+                                self.showLightbox = false
+                            }
                     }
                     .hAlign(.leading)
                 }
