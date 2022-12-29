@@ -112,24 +112,32 @@ struct RegisterView: View {
             .padding(.top,25)
             
             TextField("Username", text:$userName)
-                .textContentType(.emailAddress)
+                .textContentType(.nickname)
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
                 .border(1, .cgBlue.opacity(0.5))
             
             TextField("Email", text:$emailID)
                 .textContentType(.emailAddress)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .border(1, .cgBlue.opacity(0.5))
             
             SecureField("Password", text:$password)
-                .textContentType(.emailAddress)
+                .textContentType(.password)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .border(1, .cgBlue.opacity(0.5))
             
             TextField("About You", text:$userBio, axis: .vertical)
                 .frame(minHeight: 100, alignment: .top)
-                .textContentType(.emailAddress)
+                .textContentType(.nickname)
                 .border(1, .cgBlue.opacity(0.5))
             
             TextField("Bio Link (Optional)", text:$userBioLink)
-                .textContentType(.emailAddress)
+                .textContentType(.URL)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .border(1, .cgBlue.opacity(0.5))
             
             Button(action: registerUser) {

@@ -37,13 +37,18 @@ struct LoginView: View {
                 .hAlign(.leading)
             
             VStack(spacing:12){
-                TextField("Email", text:$emailID)
+                TextField("Email", text: $emailID)
                     .textContentType(.emailAddress)
+                    .autocapitalization(UITextAutocapitalizationType.none)
+                    .autocorrectionDisabled()
                     .border(1, .cgBlue.opacity(0.5))
-                    .padding(.top,25)
+                    .padding(.top, 25)
+
                 
                 SecureField("Password", text:$password)
-                    .textContentType(.emailAddress)
+                    .textContentType(.password)
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
                     .border(1, .cgBlue.opacity(0.5))
                 
                 Button("Reset Password?", action:resetPassword)
