@@ -18,6 +18,7 @@ struct ProfileView: View {
     @State var errorMessage: String = ""
     @State var showError: Bool = false
     @State var isLoading: Bool = false
+    @State var editAccount: Bool = false
     var body: some View {
         NavigationStack {
             VStack {
@@ -36,9 +37,12 @@ struct ProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        //MARK: Two Action's
-                        //1. Logout
-                        //2. Delete Account
+                        //MARK: Three Action's
+                        //1. Edit Profile
+                        //2. Logout
+                        //3. Delete Account
+                        Button("Edit Profile") { editAccount.toggle()
+                        }
                         Button("Logout", action: logOutUser)
                         Button("Delete Account", role: .destructive, action: deleteAccount)
                     } label: {
@@ -61,6 +65,10 @@ struct ProfileView: View {
                 // MARK: Initial Fetch
                 await fetchUserData()
             }
+        }
+        //MARK: Register View via Sheets
+        .fullScreenCover(isPresented: $editAccount){
+            EditProfileView()
         }
     }
     //MARK: Fetching User Data

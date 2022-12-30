@@ -35,6 +35,7 @@
 		355EB4E3295CE8D900F274D7 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E2295CE8D900F274D7 /* PostsView.swift */; };
 		355EB4E5295CF36500F274D7 /* ReusablePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */; };
 		355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E6295CFAB500F274D7 /* PostCardView.swift */; };
+		356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FE86A295E629A00FD782B /* EditProfileView.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		355EB4E2295CE8D900F274D7 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePostsView.swift; sourceTree = "<group>"; };
 		355EB4E6295CFAB500F274D7 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
+		356FE86A295E629A00FD782B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +255,7 @@
 			children = (
 				3552DCB6295CADA10074DCCD /* ProfileView.swift */,
 				355EB4D9295CB45200F274D7 /* ReusableProfileContent.swift */,
+				356FE86A295E629A00FD782B /* EditProfileView.swift */,
 			);
 			path = ProfileVIew;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,
 				3552DCAA295C97DE0074DCCD /* User.swift in Sources */,
 				3552B283295C6E2A00189651 /* ContentView.swift in Sources */,
+				356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */,
 				355EB4E3295CE8D900F274D7 /* PostsView.swift in Sources */,
 				355EB4E5295CF36500F274D7 /* ReusablePostsView.swift in Sources */,
 				3552B2C5295C73CA00189651 /* LoginView.swift in Sources */,
