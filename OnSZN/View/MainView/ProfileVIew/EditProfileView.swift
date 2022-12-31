@@ -85,35 +85,65 @@ struct EditProfileView: View {
         .alert(errorMessage, isPresented: $showError, actions: {})
     }
     
-    func updateUserInfo() {
-        // Get Firestore instance and user's uid
-        let db = Firestore.firestore()
-        let uid = Auth.auth().currentUser?.uid
+    func updateUserInfo(completion: @escaping (Error?) -> Void) {
+        isLoading = true
+        closeKeyboard()
+      // Get Firestore instance
+      let db = Firestore.firestore()
 
-        // Update user's data in Firebase Firestore
-        db.collection("users").document(uid ?? "").updateData([
-            "email": self.emailID,
-            "password": self.password,
-            "username": self.userName,
-            "bio": self.userBio,
-            "bio_link": self.userBioLink,
-            "profile_pic_data": self.userProfilePicData
-        ]) { (error) in
-            if let error = error {
-                // Show error message
-                self.errorMessage = error.localizedDescription
-                self.showError = true
-            } else {
-                // Update user's data in UserDefaults
-                self.userNameStored = self.userName
-                self.profileURL = URL(string: self.userBioLink)
-                self.logStatus = true
-                // Dismiss view
-                self.dismiss()
-            }
+      // Get user's uid, if it exists
+      if let uid = Auth.auth().currentUser?.uid {
+        guard let imageData = userProfilePicData else {
+          completion(nil)
+          return
         }
+        let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
+        storageRef.putData(imageData) { (metadata, error) in
+          if let error = error {
+            completion(error)
+          } else {
+            // Downloading Photo URL
+            storageRef.downloadURL { (url, error) in
+              if let error = error {
+                completion(error)
+              } else {
+                // Update user's data in Firebase Firestore
+                db.collection("Users").document(uid).updateData([
+                  "userEmail": self.emailID,
+                  "username": self.userName,
+                  "userBio": self.userBio,
+                  "userBioLink": self.userBioLink,
+                  "profile_pic_data": url?.absoluteString
+                ]) { (error) in
+                  if let error = error {
+                    // Show error message
+                    self.errorMessage = error.localizedDescription
+                    self.showError = true
+                    completion(error)
+                  } else {
+                    // Update user's data in UserDefaults
+                    self.userNameStored = self.userName
+                    self.profileURL = URL(string: self.userBioLink)
+                    self.logStatus = true
+                    // Dismiss view
+                    self.dismiss()
+                    completion(nil)
+                  }
+                }
+              }
+            }
+          }
+        }
+      } else {
+        // Handle error: uid is nil
+        self.errorMessage = "Error: Could not retrieve user's uid"
+        self.showError = true
+        completion(nil)
+      }
     }
+
     
+        
     @ViewBuilder
     func HelperView() -> some View {
         VStack(spacing:12) {
@@ -146,25 +176,51 @@ struct EditProfileView: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .hAlign(.center)
+            
             VStack(spacing:15) {
-                TextField("Username",text: $userName)
-                TextField("Email", text: $emailID)
-                SecureField("Password", text: $password)
-                TextField("About You", text: $userBio)
-                TextField("Bio Link (Optional)", text: $userBioLink)
-                Button(action: updateUserInfo) {
-                    //MARK: Login Button
+                TextField("Username", text:$userName)
+                    .textContentType(.nickname)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                    .border(1, .cgBlue.opacity(0.5))
+                
+                TextField("Email", text:$emailID)
+                    .textContentType(.emailAddress)
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
+                    .border(1, .cgBlue.opacity(0.5))
+                
+                TextField("About You", text:$userBio, axis: .vertical)
+                    .frame(minHeight: 100, alignment: .top)
+                    .textContentType(.nickname)
+                    .border(1, .cgBlue.opacity(0.5))
+                
+                TextField("Bio Link (Optional)", text:$userBioLink)
+                    .foregroundColor(.gray)
+                    .textContentType(.URL)
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
+                    .border(1, .cgBlue.opacity(0.5))
+                
+                Button(action: {
+                  updateUserInfo { (error) in
+                    if let error = error {
+                      // Handle the error
+                      self.errorMessage = error.localizedDescription
+                      self.showError = true
+                    }
+                  }
+                }) {
                     Text("Save Changes")
                         .foregroundColor(.white)
                         .hAlign(.center)
-                        .fillView(.oxfordBlue)
-                }
-                .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
+                        .fillView(.oxfordBlue)                }
+                .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || userProfilePicData == nil)
                 .padding(.top,10)
-            }
             }
         }
     }
+}
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
