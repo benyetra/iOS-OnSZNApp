@@ -22,6 +22,7 @@ struct EditProfileView: View {
     @State var userBio: String = ""
     @State var userBioLink: String = ""
     @State var userProfilePicData: Data?
+    @State var userProfileURL: URL?
     //MARK: View Properties
     @Environment(\.dismiss) var dismiss
     @State var showImagePicker: Bool = false
@@ -29,6 +30,7 @@ struct EditProfileView: View {
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
+    @State private var croppedImage: UIImage?
     // MARK: User Defaults
     @AppStorage("log_status") var logStatus: Bool = false
     @AppStorage("user_profile_url") var profileURL: URL?
@@ -154,13 +156,14 @@ struct EditProfileView: View {
             let db = Firestore.firestore()
             let uid = Auth.auth().currentUser?.uid
             db.collection("Users").document(uid!).getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        self.emailID = document["userEmail"] as? String ?? ""
-                        self.userName = document["username"] as? String ?? ""
-                        self.userBio = document["userBio"] as? String ?? ""
-                        self.userBioLink = document["userBioLink"] as? String ?? ""
-                        self.userProfilePicData = document["userProfileURL"] as? Data
-                    } else {
+                if let document = document, document.exists {
+                    self.emailID = document["userEmail"] as? String ?? ""
+                    self.userName = document["username"] as? String ?? ""
+                    self.userBio = document["userBio"] as? String ?? ""
+                    self.userBioLink = document["userBioLink"] as? String ?? ""
+                    self.userProfilePicData = document["userProfileURL"] as? Data
+                    self.userProfileURL = document["userProfileURL"] as? URL
+                } else {
                         print("Error getting user data: \(error)")
                     }
                 }
@@ -170,11 +173,17 @@ struct EditProfileView: View {
     func HelperView() -> some View {
         VStack(spacing:12) {
             ZStack {
-                WebImage(url: profileURL).placeholder {
-                    // MARK: Placeholder Image
-                    Image("NullProfile")
+                if let croppedImage {
+                    Image(uiImage: croppedImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
+                        .frame(width: 300, height: 400)
+                }
+                    WebImage(url: profileURL).placeholder {
+                        // MARK: Placeholder Image
+                        Image("NullProfile")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
                 }
             }
             .frame(width: 85, height: 85)
@@ -184,6 +193,9 @@ struct EditProfileView: View {
                 showImagePicker.toggle()
             }
             .padding(.top, 20)
+            
+            // MARK: Displaying Alert
+            .alert(errorMessage, isPresented: $showError, actions: {})
             
             Text("Edit Profile Picture")
                 .font(.title3)
@@ -199,9 +211,6 @@ struct EditProfileView: View {
                     .textContentType(.nickname)
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
-                    .onAppear {
-                        getUserData()
-                    }
                     .border(1, .cgBlue.opacity(0.5))
                 
                 TextField("Email", text:$emailID, prompt: Text(emailID))
@@ -236,10 +245,26 @@ struct EditProfileView: View {
                         .hAlign(.center)
                         .fillView(.oxfordBlue)
                 }
-                .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || userProfilePicData == nil)
+                .disableWithOpacity(userName == "" || userBio == "" || emailID == "")
                 .padding(.top,10)
             }
         }
+        .onAppear {
+            getUserData()
+        }
+        .onChange(of: photoItem) { newValue in
+            //MARK: Extracting UIImage From PhotoItem
+            Task {
+                do {
+                    guard let imageData = try await newValue?.loadTransferable(type: Data.self) else {return}
+                    //MARK: UI Must Be Updated on Main Thread
+                    await MainActor.run(body: {
+                        userProfilePicData = imageData
+                    })
+                }catch{}
+            }
+        }
+        .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
     }
 }
 

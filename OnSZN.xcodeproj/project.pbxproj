@@ -38,6 +38,8 @@
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 		35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35F8A690296088C300DBC936 /* GoogleService-Info.plist */; };
+		35F8A69529636A2100DBC936 /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69429636A2100DBC936 /* Crop.swift */; };
+		35F8A69729636CAC00DBC936 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		35F8A690296088C300DBC936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		35F8A69429636A2100DBC936 /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
+		35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +203,7 @@
 			children = (
 				3552DCA9295C97DE0074DCCD /* User.swift */,
 				355EB4E0295CBCA900F274D7 /* Post.swift */,
+				35F8A69429636A2100DBC936 /* Crop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				3552DCB4295CAAA80074DCCD /* MainView.swift */,
 				355EB4DE295CBC6400F274D7 /* CreateNewPost.swift */,
 				35EA2F52295DCE2500CEF35E /* SearchUserView.swift */,
+				35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -412,10 +418,12 @@
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,
 				3552DCAA295C97DE0074DCCD /* User.swift in Sources */,
 				3552B283295C6E2A00189651 /* ContentView.swift in Sources */,
+				35F8A69729636CAC00DBC936 /* CustomImagePicker.swift in Sources */,
 				356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */,
 				355EB4E3295CE8D900F274D7 /* PostsView.swift in Sources */,
 				355EB4E5295CF36500F274D7 /* ReusablePostsView.swift in Sources */,
 				3552B2C5295C73CA00189651 /* LoginView.swift in Sources */,
+				35F8A69529636A2100DBC936 /* Crop.swift in Sources */,
 				3552DCB0295CA9720074DCCD /* RegisterView.swift in Sources */,
 				3552DCAC295C9F6E0074DCCD /* LoadingView.swift in Sources */,
 				3552DCB7295CADA10074DCCD /* ProfileView.swift in Sources */,
