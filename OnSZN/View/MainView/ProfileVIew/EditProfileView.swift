@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import PhotosUI
+import SDWebImageSwiftUI
 
 struct EditProfileView: View {
     //MARK: User Properties
@@ -115,7 +116,7 @@ struct EditProfileView: View {
                   "username": self.userName,
                   "userBio": self.userBio,
                   "userBioLink": self.userBioLink,
-                  "profile_pic_data": url?.absoluteString
+                  "userProfileURL": url?.absoluteString
                 ]) { (error) in
                   if let error = error {
                     // Show error message
@@ -169,16 +170,11 @@ struct EditProfileView: View {
     func HelperView() -> some View {
         VStack(spacing:12) {
             ZStack {
-                if let userProfilePicData, let image = UIImage(data: userProfilePicData) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } else {
+                WebImage(url: profileURL).placeholder {
+                    // MARK: Placeholder Image
                     Image("NullProfile")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
                 }
             }
             .frame(width: 85, height: 85)
@@ -197,8 +193,6 @@ struct EditProfileView: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .hAlign(.center)
-
-            let db = Firestore.firestore()
 
             VStack(spacing:15) {
                 TextField("Username", text:$userName, prompt: Text(userName))
