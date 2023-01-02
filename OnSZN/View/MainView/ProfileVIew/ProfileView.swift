@@ -71,6 +71,7 @@ struct ProfileView: View {
             EditProfileView()
         }
     }
+    
     //MARK: Fetching User Data
     func fetchUserData()async{
         guard let userUID = Auth.auth().currentUser?.uid else{return}

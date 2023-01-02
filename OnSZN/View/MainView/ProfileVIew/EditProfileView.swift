@@ -13,6 +13,8 @@ import PhotosUI
 
 struct EditProfileView: View {
     //MARK: User Properties
+    var docRef: DocumentReference!
+
     @State var emailID: String = ""
     @State var password: String = ""
     @State var userName: String = ""
@@ -140,9 +142,28 @@ struct EditProfileView: View {
         self.showError = true
         completion(nil)
       }
+        
     }
 
+    init() {
+           getUserData()
+    }
     
+    func getUserData() {
+            let db = Firestore.firestore()
+            let uid = Auth.auth().currentUser?.uid
+            db.collection("Users").document(uid!).getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        self.emailID = document["userEmail"] as? String ?? ""
+                        self.userName = document["username"] as? String ?? ""
+                        self.userBio = document["userBio"] as? String ?? ""
+                        self.userBioLink = document["userBioLink"] as? String ?? ""
+                        self.userProfilePicData = document["userProfileURL"] as? Data
+                    } else {
+                        print("Error getting user data: \(error)")
+                    }
+                }
+            }
         
     @ViewBuilder
     func HelperView() -> some View {
@@ -176,26 +197,31 @@ struct EditProfileView: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .hAlign(.center)
-            
+
+            let db = Firestore.firestore()
+
             VStack(spacing:15) {
-                TextField("Username", text:$userName)
+                TextField("Username", text:$userName, prompt: Text(userName))
                     .textContentType(.nickname)
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
+                    .onAppear {
+                        getUserData()
+                    }
                     .border(1, .cgBlue.opacity(0.5))
                 
-                TextField("Email", text:$emailID)
+                TextField("Email", text:$emailID, prompt: Text(emailID))
                     .textContentType(.emailAddress)
                     .autocorrectionDisabled()
                     .autocapitalization(.none)
                     .border(1, .cgBlue.opacity(0.5))
                 
-                TextField("About You", text:$userBio, axis: .vertical)
+                TextField("About You", text:$userBio, prompt: Text(userBio), axis: .vertical)
                     .frame(minHeight: 100, alignment: .top)
                     .textContentType(.nickname)
                     .border(1, .cgBlue.opacity(0.5))
                 
-                TextField("Bio Link (Optional)", text:$userBioLink)
+                TextField("Bio Link (Optional)", text:$userBioLink, prompt: Text(userBioLink))
                     .foregroundColor(.gray)
                     .textContentType(.URL)
                     .autocorrectionDisabled()
@@ -214,7 +240,8 @@ struct EditProfileView: View {
                     Text("Save Changes")
                         .foregroundColor(.white)
                         .hAlign(.center)
-                        .fillView(.oxfordBlue)                }
+                        .fillView(.oxfordBlue)
+                }
                 .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || userProfilePicData == nil)
                 .padding(.top,10)
             }

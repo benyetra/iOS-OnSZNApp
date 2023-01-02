@@ -52,6 +52,16 @@ struct RegisterView: View {
                 HelperView()
             }
             
+            Text("Edit Profile Picture")
+                .font(.title3)
+                .foregroundColor(.oxfordBlue)
+                .hAlign(.center)
+            
+            Text("Tap on the image to change it")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .hAlign(.center)
+            
             //MARK: Register Button
             HStack {
                 Text("Already have an account?")
