@@ -30,7 +30,6 @@ struct EditProfileView: View {
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
-    @State private var croppedImage: UIImage?
     // MARK: User Defaults
     @AppStorage("log_status") var logStatus: Bool = false
     @AppStorage("user_profile_url") var profileURL: URL?
@@ -173,17 +172,24 @@ struct EditProfileView: View {
     func HelperView() -> some View {
         VStack(spacing:12) {
             ZStack {
-                if let croppedImage {
-                    Image(uiImage: croppedImage)
+                WebImage(url: profileURL).placeholder {
+                    // MARK: Placeholder Image
+                    Image("NullProfile")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 300, height: 400)
                 }
-                    WebImage(url: profileURL).placeholder {
-                        // MARK: Placeholder Image
-                        Image("NullProfile")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
+            }
+            .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
+            .onChange(of: photoItem) { newValue in
+                //MARK: Extracting UIImage From PhotoItem
+                Task {
+                    do {
+                        guard let imageData = try await newValue?.loadTransferable(type: Data.self) else {return}
+                        //MARK: UI Must Be Updated on Main Thread
+                        await MainActor.run(body: {
+                            userProfilePicData = imageData
+                        })
+                    }catch{}
                 }
             }
             .frame(width: 85, height: 85)
@@ -192,7 +198,7 @@ struct EditProfileView: View {
             .onTapGesture {
                 showImagePicker.toggle()
             }
-            .padding(.top, 20)
+            .padding(.top, 25)
             
             // MARK: Displaying Alert
             .alert(errorMessage, isPresented: $showError, actions: {})
@@ -205,7 +211,7 @@ struct EditProfileView: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .hAlign(.center)
-
+            
             VStack(spacing:15) {
                 TextField("Username", text:$userName, prompt: Text(userName))
                     .textContentType(.nickname)
@@ -232,13 +238,13 @@ struct EditProfileView: View {
                     .border(1, .cgBlue.opacity(0.5))
                 
                 Button(action: {
-                  updateUserInfo { (error) in
-                    if let error = error {
-                      // Handle the error
-                      self.errorMessage = error.localizedDescription
-                      self.showError = true
+                    updateUserInfo { (error) in
+                        if let error = error {
+                            // Handle the error
+                            self.errorMessage = error.localizedDescription
+                            self.showError = true
+                        }
                     }
-                  }
                 }) {
                     Text("Save Changes")
                         .foregroundColor(.white)
@@ -252,19 +258,6 @@ struct EditProfileView: View {
         .onAppear {
             getUserData()
         }
-        .onChange(of: photoItem) { newValue in
-            //MARK: Extracting UIImage From PhotoItem
-            Task {
-                do {
-                    guard let imageData = try await newValue?.loadTransferable(type: Data.self) else {return}
-                    //MARK: UI Must Be Updated on Main Thread
-                    await MainActor.run(body: {
-                        userProfilePicData = imageData
-                    })
-                }catch{}
-            }
-        }
-        .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
     }
 }
 

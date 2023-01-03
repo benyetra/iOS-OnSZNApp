@@ -55,17 +55,10 @@ fileprivate struct CustomImagePicker<Content: View>: View {
                         if let imageData = try? await newValue.loadTransferable(type: Data.self),let image = UIImage(data:imageData) {
                             await MainActor.run(body: {
                                 selectedImage = image
-                                showDialog.toggle()
+                                selectedCropType = .circle
+                                showCropView.toggle()
                             })
                         }
-                    }
-                }
-            }
-            .confirmationDialog("", isPresented: $showDialog) {
-                ForEach(options.indices,id: \.self) { index in
-                    Button(options[index].name()){
-                        selectedCropType = options[index]
-                        showCropView.toggle()
                     }
                 }
             }
@@ -245,7 +238,7 @@ struct CropView: View {
 
 struct CustomImagePicker_Previews: PreviewProvider {
     static var previews: some View {
-        CropView(crop: .square, image:UIImage(named:"NullProfile")) { _, _ in
+        CropView(crop: .circle, image:UIImage(named:"NullProfile")) { _, _ in
         }
     }
 }
