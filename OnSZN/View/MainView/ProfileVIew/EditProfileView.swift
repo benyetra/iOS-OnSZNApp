@@ -15,7 +15,6 @@ import SDWebImageSwiftUI
 struct EditProfileView: View {
     //MARK: User Properties
     var docRef: DocumentReference!
-
     @State var emailID: String = ""
     @State var password: String = ""
     @State var userName: String = ""
@@ -89,107 +88,20 @@ struct EditProfileView: View {
         .alert(errorMessage, isPresented: $showError, actions: {})
     }
     
-    func updateUserInfo(completion: @escaping (Error?) -> Void) {
-        isLoading = true
-        closeKeyboard()
-      // Get Firestore instance
-      let db = Firestore.firestore()
-
-      // Get user's uid, if it exists
-      if let uid = Auth.auth().currentUser?.uid {
-        guard let imageData = userProfilePicData else {
-          completion(nil)
-          return
-        }
-        let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
-        storageRef.putData(imageData) { (metadata, error) in
-          if let error = error {
-            completion(error)
-          } else {
-            // Downloading Photo URL
-            storageRef.downloadURL { (url, error) in
-              if let error = error {
-                completion(error)
-              } else {
-                // Update user's data in Firebase Firestore
-                db.collection("Users").document(uid).updateData([
-                  "userEmail": self.emailID,
-                  "username": self.userName,
-                  "userBio": self.userBio,
-                  "userBioLink": self.userBioLink,
-                  "userProfileURL": url?.absoluteString
-                ]) { (error) in
-                  if let error = error {
-                    // Show error message
-                    self.errorMessage = error.localizedDescription
-                    self.showError = true
-                    completion(error)
-                  } else {
-                    // Update user's data in UserDefaults
-                    self.userNameStored = self.userName
-                    self.profileURL = URL(string: self.userBioLink)
-                    self.logStatus = true
-                    // Dismiss view
-                    self.dismiss()
-                    completion(nil)
-                  }
-                }
-              }
-            }
-          }
-        }
-      } else {
-        // Handle error: uid is nil
-        self.errorMessage = "Error: Could not retrieve user's uid"
-        self.showError = true
-        completion(nil)
-      }
-        
-    }
-
-    init() {
-           getUserData()
-    }
-    
-    func getUserData() {
-            let db = Firestore.firestore()
-            let uid = Auth.auth().currentUser?.uid
-            db.collection("Users").document(uid!).getDocument { (document, error) in
-                if let document = document, document.exists {
-                    self.emailID = document["userEmail"] as? String ?? ""
-                    self.userName = document["username"] as? String ?? ""
-                    self.userBio = document["userBio"] as? String ?? ""
-                    self.userBioLink = document["userBioLink"] as? String ?? ""
-                    self.userProfilePicData = document["userProfileURL"] as? Data
-                    self.userProfileURL = document["userProfileURL"] as? URL
-                } else {
-                        print("Error getting user data: \(error)")
-                    }
-                }
-            }
-        
     @ViewBuilder
     func HelperView() -> some View {
         VStack(spacing:12) {
             ZStack {
-                WebImage(url: profileURL).placeholder {
-                    // MARK: Placeholder Image
+                if let userProfilePicData, let image = UIImage(data: userProfilePicData) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } else {
                     Image("NullProfile")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                }
-            }
-            .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
-            .onChange(of: photoItem) { newValue in
-                //MARK: Extracting UIImage From PhotoItem
-                Task {
-                    do {
-                        guard let imageData = try await newValue?.loadTransferable(type: Data.self) else {return}
-                        //MARK: UI Must Be Updated on Main Thread
-                        await MainActor.run(body: {
-                            userProfilePicData = imageData
-                        })
-                    }catch{}
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
                 }
             }
             .frame(width: 85, height: 85)
@@ -257,6 +169,80 @@ struct EditProfileView: View {
         }
         .onAppear {
             getUserData()
+        }
+    }
+    
+    func updateUserInfo(completion: @escaping (Error?) -> Void) {
+        isLoading = true
+        closeKeyboard()
+        // Get Firestore instance
+        let db = Firestore.firestore()
+        
+        // Get user's uid, if it exists
+        if let uid = Auth.auth().currentUser?.uid {
+            guard let imageData = userProfilePicData else {
+                completion(nil)
+                return
+            }
+            let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
+            storageRef.putData(imageData) { (metadata, error) in
+                if let error = error {
+                    completion(error)
+                } else {
+                    // Downloading Photo URL
+                    storageRef.downloadURL { (url, error) in
+                        if let error = error {
+                            completion(error)
+                        } else {
+                            // Update user's data in Firebase Firestore
+                            db.collection("Users").document(uid).updateData([
+                                "userEmail": self.emailID,
+                                "username": self.userName,
+                                "userBio": self.userBio,
+                                "userBioLink": self.userBioLink,
+                                "userProfileURL": url?.absoluteString
+                            ]) { (error) in
+                                if let error = error {
+                                    // Show error message
+                                    self.errorMessage = error.localizedDescription
+                                    self.showError = true
+                                    completion(error)
+                                } else {
+                                    // Update user's data in UserDefaults
+                                    self.userNameStored = self.userName
+                                    self.profileURL = URL(string: self.userBioLink)
+                                    self.logStatus = true
+                                    // Dismiss view
+                                    self.dismiss()
+                                    completion(nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            // Handle error: uid is nil
+            self.errorMessage = "Error: Could not retrieve user's uid"
+            self.showError = true
+            completion(nil)
+        }
+    }
+    
+    func getUserData() {
+        let db = Firestore.firestore()
+        let uid = Auth.auth().currentUser?.uid
+        db.collection("Users").document(uid!).getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.emailID = document["userEmail"] as? String ?? ""
+                self.userName = document["username"] as? String ?? ""
+                self.userBio = document["userBio"] as? String ?? ""
+                self.userBioLink = document["userBioLink"] as? String ?? ""
+                self.userProfilePicData = document["userProfileURL"] as? Data
+                self.userProfileURL = document["userProfileURL"] as? URL
+            } else {
+                print("Error getting user data: \(error)")
+            }
         }
     }
 }
