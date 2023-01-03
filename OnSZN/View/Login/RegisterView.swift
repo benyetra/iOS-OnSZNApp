@@ -13,6 +13,7 @@ import PhotosUI
 
 //MARK: Register View
 struct RegisterView: View {
+    @State var croppedImage: UIImage?
     //MARK: User Properties
     @State var emailID: String = ""
     @State var password: String = ""
@@ -39,7 +40,7 @@ struct RegisterView: View {
                 .foregroundColor(.oxfordBlue)
                 .hAlign(.leading)
             
-            Text("Hello user, Have a wonderful journey!")
+            Text("Hello user, welcome to the league!")
                 .font(.title3)
                 .foregroundColor(.oxfordBlue)
                 .hAlign(.leading)
@@ -79,6 +80,7 @@ struct RegisterView: View {
                     //MARK: UI Must Be Updated on Main Thread
                     await MainActor.run(body: {
                         userProfilePicData = imageData
+//                        croppedImage = imageData
                     })
                 }catch{}
             }
@@ -103,6 +105,7 @@ struct RegisterView: View {
                         .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
                 }
             }
+//            .cropImagePicker(options: [.circle], show: $showImagePicker, croppedImage: $croppedImage)
             .frame(width: 85, height: 85)
             .clipShape(Circle())
             .contentShape(Circle())
@@ -111,6 +114,18 @@ struct RegisterView: View {
             }
             .padding(.top,25)
             
+            Text("Edit Profile Picture")
+                .font(.title3)
+                .foregroundColor(.oxfordBlue)
+                .hAlign(.center)
+            
+            Text("Tap on the image to change it")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .hAlign(.center)
+                .padding(-10)
+            
+        
             TextField("Username", text:$userName)
                 .textContentType(.nickname)
                 .autocapitalization(.none)

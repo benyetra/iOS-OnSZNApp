@@ -16,7 +16,6 @@
 		3552B293295C6E2C00189651 /* OnSZNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552B292295C6E2C00189651 /* OnSZNTests.swift */; };
 		3552B29D295C6E2C00189651 /* OnSZNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552B29C295C6E2C00189651 /* OnSZNUITests.swift */; };
 		3552B29F295C6E2C00189651 /* OnSZNUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552B29E295C6E2C00189651 /* OnSZNUITestsLaunchTests.swift */; };
-		3552B2AE295C700400189651 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3552B2AD295C700400189651 /* GoogleService-Info.plist */; };
 		3552B2B3295C70FC00189651 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3552B2B2295C70FC00189651 /* FirebaseAuth */; };
 		3552B2C5295C73CA00189651 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552B2C4295C73CA00189651 /* LoginView.swift */; };
 		3552B2C8295C920900189651 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3552B2C7295C920900189651 /* FirebaseFirestore */; };
@@ -35,8 +34,12 @@
 		355EB4E3295CE8D900F274D7 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E2295CE8D900F274D7 /* PostsView.swift */; };
 		355EB4E5295CF36500F274D7 /* ReusablePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */; };
 		355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E6295CFAB500F274D7 /* PostCardView.swift */; };
+		356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FE86A295E629A00FD782B /* EditProfileView.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
+		35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35F8A690296088C300DBC936 /* GoogleService-Info.plist */; };
+		35F8A69529636A2100DBC936 /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69429636A2100DBC936 /* Crop.swift */; };
+		35F8A69729636CAC00DBC936 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +73,6 @@
 		3552B298295C6E2C00189651 /* OnSZNUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnSZNUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3552B29C295C6E2C00189651 /* OnSZNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSZNUITests.swift; sourceTree = "<group>"; };
 		3552B29E295C6E2C00189651 /* OnSZNUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSZNUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		3552B2AD295C700400189651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3552B2C4295C73CA00189651 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3552DCA9295C97DE0074DCCD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3552DCAB295C9F6E0074DCCD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -84,8 +86,12 @@
 		355EB4E2295CE8D900F274D7 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePostsView.swift; sourceTree = "<group>"; };
 		355EB4E6295CFAB500F274D7 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
+		356FE86A295E629A00FD782B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		35F8A690296088C300DBC936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		35F8A69429636A2100DBC936 /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
+		35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +157,7 @@
 				3552B284295C6E2C00189651 /* Assets.xcassets */,
 				3552B286295C6E2C00189651 /* OnSZN.entitlements */,
 				3552B27F295C6E2A00189651 /* OnSZN.xcdatamodeld */,
-				3552B2AD295C700400189651 /* GoogleService-Info.plist */,
+				35F8A690296088C300DBC936 /* GoogleService-Info.plist */,
 				3552B287295C6E2C00189651 /* Preview Content */,
 			);
 			path = OnSZN;
@@ -197,6 +203,7 @@
 			children = (
 				3552DCA9295C97DE0074DCCD /* User.swift */,
 				355EB4E0295CBCA900F274D7 /* Post.swift */,
+				35F8A69429636A2100DBC936 /* Crop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +232,7 @@
 				3552DCB4295CAAA80074DCCD /* MainView.swift */,
 				355EB4DE295CBC6400F274D7 /* CreateNewPost.swift */,
 				35EA2F52295DCE2500CEF35E /* SearchUserView.swift */,
+				35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 			children = (
 				3552DCB6295CADA10074DCCD /* ProfileView.swift */,
 				355EB4D9295CB45200F274D7 /* ReusableProfileContent.swift */,
+				356FE86A295E629A00FD782B /* EditProfileView.swift */,
 			);
 			path = ProfileVIew;
 			sourceTree = "<group>";
@@ -374,7 +383,7 @@
 			files = (
 				3552B289295C6E2C00189651 /* Preview Assets.xcassets in Resources */,
 				3552B285295C6E2C00189651 /* Assets.xcassets in Resources */,
-				3552B2AE295C700400189651 /* GoogleService-Info.plist in Resources */,
+				35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,9 +418,12 @@
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,
 				3552DCAA295C97DE0074DCCD /* User.swift in Sources */,
 				3552B283295C6E2A00189651 /* ContentView.swift in Sources */,
+				35F8A69729636CAC00DBC936 /* CustomImagePicker.swift in Sources */,
+				356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */,
 				355EB4E3295CE8D900F274D7 /* PostsView.swift in Sources */,
 				355EB4E5295CF36500F274D7 /* ReusablePostsView.swift in Sources */,
 				3552B2C5295C73CA00189651 /* LoginView.swift in Sources */,
+				35F8A69529636A2100DBC936 /* Crop.swift in Sources */,
 				3552DCB0295CA9720074DCCD /* RegisterView.swift in Sources */,
 				3552DCAC295C9F6E0074DCCD /* LoadingView.swift in Sources */,
 				3552DCB7295CADA10074DCCD /* ProfileView.swift in Sources */,
@@ -572,7 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OnSZN/Preview Content\"";
-				DEVELOPMENT_TEAM = NM6T42RAQ4;
+				DEVELOPMENT_TEAM = 87A6J7UY87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = OnSZN;
@@ -593,6 +605,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = byetz.OnSZN;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.byetz.OnSZN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -611,7 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OnSZN/Preview Content\"";
-				DEVELOPMENT_TEAM = NM6T42RAQ4;
+				DEVELOPMENT_TEAM = 87A6J7UY87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = OnSZN;
@@ -632,6 +645,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = byetz.OnSZN;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.byetz.OnSZN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

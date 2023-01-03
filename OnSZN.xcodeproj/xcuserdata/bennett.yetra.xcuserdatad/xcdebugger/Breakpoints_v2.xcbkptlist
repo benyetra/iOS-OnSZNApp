@@ -3,4 +3,118 @@
    uuid = "BF0A0EAC-AF4D-439A-8F90-36BBABD432E7"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23B4DF3C-1FC4-4935-8E28-6E36E374C904"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnSZN/View/Helpers/FetchUserView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "23B4DF3C-1FC4-4935-8E28-6E36E374C904 - f9e03445b14b416"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnSZN.FetchUserView.getUserData() -&gt; ()"
+                  moduleName = "OnSZN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/Helpers/FetchUserView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "340">
+               </Location>
+               <Location
+                  uuid = "23B4DF3C-1FC4-4935-8E28-6E36E374C904 - e8723ae85fde6b2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in OnSZN.FetchUserView.getUserData() -&gt; ()"
+                  moduleName = "OnSZN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/Helpers/FetchUserView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2AEAEA86-3950-4F03-8626-C66453E10D5D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnSZN/View/Helpers/FetchUserView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "2AEAEA86-3950-4F03-8626-C66453E10D5D - e8723ae85fde6b2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in OnSZN.FetchUserView.getUserData() -&gt; ()"
+                  moduleName = "OnSZN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/Helpers/FetchUserView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "2AEAEA86-3950-4F03-8626-C66453E10D5D - e8723ae85fde6b2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in OnSZN.FetchUserView.getUserData() -&gt; ()"
+                  moduleName = "OnSZN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/Helpers/FetchUserView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7961D4BE-7CF9-4913-A680-9520054CBD4A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnSZN/View/Helpers/FetchUserView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
