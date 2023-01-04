@@ -47,7 +47,7 @@ struct CreateNewPost: View {
                 Button(action: createPost) {
                     Text("Post")
                         .font(.callout)
-                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.cgBlue)
+                        .foregroundColor(colorScheme == .light ? Color.platinum : Color.cgBlue)
                         .padding(.horizontal,20)
                         .padding(.vertical,6)
                         .background(colorScheme == .light ? Color.oxfordBlue : Color.platinum,in: Capsule())
@@ -106,9 +106,10 @@ struct CreateNewPost: View {
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 }
                 .hAlign(.leading)
-                
-                Button("Done") {
-                    showKeyboard = false
+                if showKeyboard == true {
+                    Button("Done") {
+                        showKeyboard = false
+                    }
                 }
             }
             .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
