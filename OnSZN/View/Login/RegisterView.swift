@@ -23,6 +23,7 @@ struct RegisterView: View {
     @State var userProfilePicData: Data?
     //MARK: View Properties
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     @State var showImagePicker: Bool = false
     @State var photoItem: PhotosPickerItem?
     @State var showError: Bool = false
@@ -35,14 +36,16 @@ struct RegisterView: View {
     @AppStorage("user_UID") var userUID: String = ""
     var body:some View {
         VStack(spacing:10) {
-            Text("Lets register the \naccount")
+            Text("Lets register your \naccount")
                 .font(.largeTitle.bold())
-                .foregroundColor(.oxfordBlue)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
-            Text("Hello user, welcome to the league!")
+            Text("Welcome to the league!")
                 .font(.title3)
-                .foregroundColor(.oxfordBlue)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
             //MARK: Optimize Size
@@ -56,7 +59,8 @@ struct RegisterView: View {
             //MARK: Register Button
             HStack {
                 Text("Already have an account?")
-                    .foregroundColor(.gray)
+                    .environment(\.colorScheme, colorScheme)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 Button("Login Now") {
                     dismiss ()
                 }
@@ -114,49 +118,63 @@ struct RegisterView: View {
             
             Text("Edit Profile Picture")
                 .font(.title3)
-                .foregroundColor(.oxfordBlue)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                 .hAlign(.center)
             
             Text("Tap on the image to change it")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .hAlign(.center)
                 .padding(-10)
             
+            Spacer(minLength: 5)
+            
             TextField("Username", text:$userName)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.nickname)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
-                .border(1, .cgBlue.opacity(0.5))
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
             
             TextField("Email", text:$emailID)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.emailAddress)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
-                .border(1, .cgBlue.opacity(0.5))
-            
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
             SecureField("Password", text:$password)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.password)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
-                .border(1, .cgBlue.opacity(0.5))
-            
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
             TextField("About You", text:$userBio, axis: .vertical)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .frame(minHeight: 100, alignment: .top)
                 .textContentType(.nickname)
-                .border(1, .cgBlue.opacity(0.5))
-            
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
             TextField("Bio Link (Optional)", text:$userBioLink)
-                .foregroundColor(.gray)
+                .environment(\.colorScheme, colorScheme)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.URL)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
-                .border(1, .cgBlue.opacity(0.5))
-            
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
             Button(action: registerUser) {
                 //MARK: Login Button
                 Text("Sign up")
-                    .foregroundColor(.white)
+                    .environment(\.colorScheme, colorScheme)
+                    .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                     .hAlign(.center)
                     .fillView(.oxfordBlue)
             }
