@@ -116,5 +116,85 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E41CB97E-8C5E-484B-B1C8-619C6FAFCBBD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnSZN/View/MainView/TeamsView/TeamTwitterWebView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "makeUIView(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC45C004-EC64-4A11-BC20-8E5019C99135"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnSZN/View/MainView/TeamsView/TeamTwitterWebView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "makeUIView(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC45C004-EC64-4A11-BC20-8E5019C99135 - 10faa310172be223"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnSZN.TeamTwitterWebView.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;OnSZN.TeamTwitterWebView&gt;) -&gt; __C.WKWebView"
+                  moduleName = "OnSZN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/MainView/TeamsView/TeamTwitterWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  uuid = "AC45C004-EC64-4A11-BC20-8E5019C99135 - 10faa310172be223"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnSZN.TeamTwitterWebView.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;OnSZN.TeamTwitterWebView&gt;) -&gt; __C.WKWebView"
+                  moduleName = "OnSZN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/MainView/TeamsView/TeamTwitterWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "448">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "358E5282-EF77-448E-9E2F-ADB4FD942423"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnSZN/View/MainView/TeamsView/TeamView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

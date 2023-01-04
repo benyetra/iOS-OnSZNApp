@@ -17,6 +17,11 @@ struct MainView: View {
                     Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled")
                     Text("Post's")
                 }
+            ContentsView()
+                .tabItem{
+                    Image(systemName: "basketball.fill")
+                    Text("Team News")
+                }
             ProfileView()
                 .tabItem{
                     Image(systemName: "person.fill")
