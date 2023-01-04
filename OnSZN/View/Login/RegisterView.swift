@@ -38,13 +38,11 @@ struct RegisterView: View {
         VStack(spacing:10) {
             Text("Lets register your \naccount")
                 .font(.largeTitle.bold())
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
             Text("Welcome to the league!")
                 .font(.title3)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
@@ -59,7 +57,6 @@ struct RegisterView: View {
             //MARK: Register Button
             HStack {
                 Text("Already have an account?")
-                    .environment(\.colorScheme, colorScheme)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 Button("Login Now") {
                     dismiss ()
@@ -118,13 +115,11 @@ struct RegisterView: View {
             
             Text("Edit Profile Picture")
                 .font(.title3)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                 .hAlign(.center)
             
             Text("Tap on the image to change it")
                 .font(.subheadline)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .hAlign(.center)
                 .padding(-10)
@@ -132,7 +127,6 @@ struct RegisterView: View {
             Spacer(minLength: 5)
             
             TextField("Username", text:$userName)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.nickname)
                 .autocapitalization(.none)
@@ -140,7 +134,6 @@ struct RegisterView: View {
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
             
             TextField("Email", text:$emailID)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.emailAddress)
                 .autocorrectionDisabled()
@@ -148,7 +141,6 @@ struct RegisterView: View {
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
 
             SecureField("Password", text:$password)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.password)
                 .autocorrectionDisabled()
@@ -156,14 +148,12 @@ struct RegisterView: View {
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
 
             TextField("About You", text:$userBio, axis: .vertical)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .frame(minHeight: 100, alignment: .top)
                 .textContentType(.nickname)
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
 
             TextField("Bio Link (Optional)", text:$userBioLink)
-                .environment(\.colorScheme, colorScheme)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 .textContentType(.URL)
                 .autocorrectionDisabled()
@@ -173,7 +163,6 @@ struct RegisterView: View {
             Button(action: registerUser) {
                 //MARK: Login Button
                 Text("Sign up")
-                    .environment(\.colorScheme, colorScheme)
                     .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                     .hAlign(.center)
                     .fillView(.oxfordBlue)
