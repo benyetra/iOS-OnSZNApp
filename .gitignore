@@ -1,4 +1,3 @@
 # iOS-OnSZNApp
 **/.DS_Store
-# Ignore Xcode user interface state files
-**/OnSZN.xcodeproj/project.xcworkspace/xcuserdata/
+**/UserInterfaceState.xcuserstate
