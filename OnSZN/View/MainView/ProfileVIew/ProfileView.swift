@@ -96,7 +96,7 @@ struct ProfileView: View {
             do {
                 guard let userUID = Auth.auth().currentUser?.uid else{return}
                 // Step 1: First Deleteing Profile Image From Storage
-                let reference = Storage.storage().reference().child("Profile_Image").child(userUID)
+                let reference = Storage.storage().reference().child("Profile_Images").child(userUID)
                 try await reference.delete()
                 // Step 2: Deleteing Diresrore User Document
                 try await Firestore.firestore().collection("Users").document(userUID).delete()

@@ -179,6 +179,7 @@ struct CreateNewPost: View {
             }
         })
     }
+    
     //MARK: Displaying Errors as Alert
     func setError(_ error: Error)async {
         await MainActor.run(body: {
