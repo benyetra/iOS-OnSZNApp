@@ -12,6 +12,7 @@ struct SearchUserView: View {
     @State private var fetchedUsers: [User] = []
     @State private var searchText: String = ""
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         List {
             ForEach(fetchedUsers) { user in
@@ -19,7 +20,7 @@ struct SearchUserView: View {
                     ReusableProfileContent(user: user)
                 } label: {
                     Text(user.username)
-                        .foregroundColor(.oxfordBlue)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         .font(.callout)
                         .hAlign(.leading)
                 }
@@ -27,7 +28,8 @@ struct SearchUserView: View {
         }
         .listStyle(.plain)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Search Users").foregroundColor(.oxfordBlue)
+        .navigationTitle("Search Users")
+        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
         .searchable(text: $searchText)
         .onSubmit(of: .search, {
             Task {await searchUsers()}

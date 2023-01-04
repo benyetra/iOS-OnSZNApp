@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 struct LoginView: View {
+    @Environment(\.colorScheme) private var colorScheme
     //MARK: User Details
     @State var emailID: String = ""
     @State var password: String = ""
@@ -28,29 +29,31 @@ struct LoginView: View {
         VStack(spacing:10) {
             Text("Lets sign you in!")
                 .font(.largeTitle.bold())
-                .foregroundColor(.oxfordBlue)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
             Text("Welcome back, \nYou have been missed!")
                 .font(.title3)
-                .foregroundColor(.oxfordBlue)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
             VStack(spacing:12){
                 TextField("Email", text: $emailID)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.emailAddress)
                     .autocapitalization(UITextAutocapitalizationType.none)
                     .autocorrectionDisabled()
-                    .border(1, .cgBlue.opacity(0.5))
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
                     .padding(.top, 25)
 
                 
                 SecureField("Password", text:$password)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.password)
                     .autocorrectionDisabled()
                     .autocapitalization(.none)
-                    .border(1, .cgBlue.opacity(0.5))
-                
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
                 Button("Reset Password?", action:resetPassword)
                     .font(.callout)
                     .fontWeight(.medium)
@@ -60,7 +63,7 @@ struct LoginView: View {
                 Button(action: loginUser) {
                     //MARK: Login Button
                     Text("Sign in")
-                        .foregroundColor(.white)
+                        .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                         .hAlign(.center)
                         .fillView(.oxfordBlue)
                 }

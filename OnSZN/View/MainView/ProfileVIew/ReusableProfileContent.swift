@@ -12,6 +12,7 @@ struct ReusableProfileContent: View {
     var user: User
     @State private var fetchedPosts: [Post] = []
     @State private var showLightbox = false
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack{
@@ -25,7 +26,7 @@ struct ReusableProfileContent: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
+                    .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
                     .onTapGesture {
                         self.showLightbox = true
                     }
@@ -34,18 +35,17 @@ struct ReusableProfileContent: View {
                         Text(user.username)
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(.oxfordBlue)
-                        
+                            .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         Text(user.userBio)
                             .font(.caption)
-                            .foregroundColor(.gray)
+                            .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                             .lineLimit(3)
                         
                         //MARK: Displaying Bio Link, If Given While Signing Up Profile Page
                         if let bioLink = URL(string: user.userBioLink) {
                             Link(user.userBioLink, destination: bioLink)
                                 .font(.callout)
-                                .foregroundColor(.cgBlue)
+                                .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.cgBlue)
                                 .tint(.blue)
                                 .lineLimit(1)
                         }
@@ -63,7 +63,7 @@ struct ReusableProfileContent: View {
                 Text ("Post's")
                     .font(.title2)
                     .fontWeight(.semibold)
-                    .foregroundColor(.oxfordBlue)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                     .hAlign(.leading)
                     .padding(.vertical,15)
                 

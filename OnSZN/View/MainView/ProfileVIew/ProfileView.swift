@@ -19,6 +19,7 @@ struct ProfileView: View {
     @State var showError: Bool = false
     @State var isLoading: Bool = false
     @State var editAccount: Bool = false
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         NavigationStack {
             VStack {
@@ -33,7 +34,7 @@ struct ProfileView: View {
                     ProgressView()
                 }
             }
-            .navigationTitle("My Profile").foregroundColor(.oxfordBlue)
+            .navigationTitle("My Profile")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
@@ -48,7 +49,7 @@ struct ProfileView: View {
                     } label: {
                         Image(systemName: "ellipsis")
                             .rotationEffect(.init(degrees: 90))
-                            .tint(.oxfordBlue)
+                            .tint(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                             .scaleEffect(0.8)
                     }
                 }

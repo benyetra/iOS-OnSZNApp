@@ -19,6 +19,7 @@ struct PostCardView: View {
     @AppStorage("user_UID") var userUID: String = ""
     @State private var docListner: ListenerRegistration?
     @State private var showLightbox = false
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -27,19 +28,19 @@ struct PostCardView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 35, height: 35)
                 .clipShape(Circle())
-                .foregroundColor(.oxfordBlue)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(post.userName)
-                    .foregroundColor(.oxfordBlue)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                     .font(.callout)
                     .fontWeight(.semibold)
                 Text(post.publishedDate.formatted(date: .numeric, time: .shortened))
-                    .foregroundColor(.cgBlue)
+                    .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                     .font(.caption)
                     .foregroundColor(.gray)
                 Text(post.text)
-                    .foregroundColor(.oxfordBlue)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                     .textSelection(.enabled)
                     .padding(.vertical, 8)
                 
@@ -49,7 +50,7 @@ struct PostCardView: View {
                         let size = $0.size
                         WebImage(url: postImageURL)
                             .resizable()
-                            .foregroundColor(.oxfordBlue)
+                            .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                             .aspectRatio(contentMode: .fill)
                             .frame(width: size.width, height: size.height)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -81,7 +82,7 @@ struct PostCardView: View {
                     Image(systemName: "ellipsis")
                         .font(.caption)
                         .rotationEffect(.init(degrees: -90))
-                        .foregroundColor(.oxfordBlue)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         .padding(8)
                         .contentShape(Rectangle())
                 }
@@ -123,21 +124,24 @@ struct PostCardView: View {
     func PostInteraction()->some View {
         HStack(spacing: 6) {
             Button(action: likePost) {
-                Image(systemName: post.likedIDs.contains(userUID) ? "hand.thumbsup.fill" : "hand.thumbsup").foregroundColor(.oxfordBlue)
+                Image(systemName: post.likedIDs.contains(userUID) ? "hand.thumbsup.fill" : "hand.thumbsup")
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+
             }
             Text("\(post.likedIDs.count)")
                 .font(.caption)
-                .foregroundColor(.gray)
-            
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.gray)
+
             Button(action: dislikePost) {
-                Image(systemName: post.dislikedIDs.contains(userUID) ? "hand.thumbsdown.fill" : "hand.thumbsdown").foregroundColor(.oxfordBlue)
+                Image(systemName: post.dislikedIDs.contains(userUID) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
             }
             .padding(.leading, 25)
             Text("\(post.dislikedIDs.count)")
                 .font(.caption)
-                .foregroundColor(.platinum)
+                .foregroundColor(colorScheme == .light ? Color.platinum : Color.platinum)
         }
-        .foregroundColor(.oxfordBlue)
+        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
         .padding(.vertical, 8)
     }
     
