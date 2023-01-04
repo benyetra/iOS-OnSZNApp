@@ -80,7 +80,6 @@ struct RegisterView: View {
                     //MARK: UI Must Be Updated on Main Thread
                     await MainActor.run(body: {
                         userProfilePicData = imageData
-//                        croppedImage = imageData
                     })
                 }catch{}
             }
@@ -105,7 +104,6 @@ struct RegisterView: View {
                         .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
                 }
             }
-//            .cropImagePicker(options: [.circle], show: $showImagePicker, croppedImage: $croppedImage)
             .frame(width: 85, height: 85)
             .clipShape(Circle())
             .contentShape(Circle())
@@ -125,7 +123,6 @@ struct RegisterView: View {
                 .hAlign(.center)
                 .padding(-10)
             
-        
             TextField("Username", text:$userName)
                 .textContentType(.nickname)
                 .autocapitalization(.none)
