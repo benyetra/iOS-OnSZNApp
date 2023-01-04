@@ -10,6 +10,7 @@ import SwiftUI
 struct PostsView: View {
     @State private var recentPosts: [Post] = []
     @State private var createNewPost: Bool = false
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         NavigationStack {
             ReusablePostsView(posts: $recentPosts)
@@ -21,9 +22,9 @@ struct PostsView: View {
                         Image(systemName: "plus")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(.platinum)
+                            .foregroundColor(colorScheme == .light ? Color.platinum : Color.oxfordBlue)
                             .padding(13)
-                            .background(Color.oxfordBlue, in: Circle())
+                            .background(colorScheme == .light ? Color.oxfordBlue : Color.platinum, in: Circle())
                     }
                     .padding(15)
                 }
@@ -33,12 +34,12 @@ struct PostsView: View {
                             SearchUserView()
                         } label: {
                             Image(systemName: "magnifyingglass")
-                                .tint(.oxfordBlue)
+                                .tint(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                                 .scaleEffect(0.9)
                         }
                     }
                 })
-                .navigationTitle("Post's").foregroundColor(.oxfordBlue)
+                .navigationTitle("Post's")
         }
         .fullScreenCover(isPresented: $createNewPost) {
             CreateNewPost { post in

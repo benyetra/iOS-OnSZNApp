@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         //MARK: TabView With Recent Post's and Profile Tabs
         TabView {
@@ -23,7 +24,7 @@ struct MainView: View {
                 }
         }
         //Changing Tab Label Tint to Black
-        .tint(.oxfordBlue)
+        .tint(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
     }
 }
 

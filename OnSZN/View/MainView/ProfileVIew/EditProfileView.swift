@@ -24,6 +24,7 @@ struct EditProfileView: View {
     @State var userProfileURL: URL?
     //MARK: View Properties
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     @State var showImagePicker: Bool = false
     @State var photoItem: PhotosPickerItem?
     @State var showError: Bool = false
@@ -38,12 +39,12 @@ struct EditProfileView: View {
         VStack(spacing:10) {
             Text("Edit your profile")
                 .font(.largeTitle.bold())
-                .foregroundColor(.oxfordBlue)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
             Text("Update your profile information")
                 .font(.title3)
-                .foregroundColor(.oxfordBlue)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.leading)
             
             //MARK: Optimize Size
@@ -61,7 +62,6 @@ struct EditProfileView: View {
                     dismiss ()
                 }
                 .fontWeight(.bold)
-                .foregroundColor(.cgBlue)
             }
             .font(.callout)
             .vAlign(.bottom)
@@ -101,7 +101,7 @@ struct EditProfileView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
+                        .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
                 }
             }
             .frame(width: 85, height: 85)
@@ -117,37 +117,43 @@ struct EditProfileView: View {
             
             Text("Edit Profile Picture")
                 .font(.title3)
-                .foregroundColor(.oxfordBlue)
-                .hAlign(.center)
-            Text("Tap on the image to change it")
-                .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                 .hAlign(.center)
             
-            VStack(spacing:15) {
-                TextField("Username", text:$userName, prompt: Text(userName))
-                    .textContentType(.nickname)
-                    .autocapitalization(.none)
-                    .autocorrectionDisabled()
-                    .border(1, .cgBlue.opacity(0.5))
-                
-                TextField("Email", text:$emailID, prompt: Text(emailID))
-                    .textContentType(.emailAddress)
-                    .autocorrectionDisabled()
-                    .autocapitalization(.none)
-                    .border(1, .cgBlue.opacity(0.5))
-                
-                TextField("About You", text:$userBio, prompt: Text(userBio), axis: .vertical)
-                    .frame(minHeight: 100, alignment: .top)
-                    .textContentType(.nickname)
-                    .border(1, .cgBlue.opacity(0.5))
-                
-                TextField("Bio Link (Optional)", text:$userBioLink, prompt: Text(userBioLink))
-                    .foregroundColor(.gray)
-                    .textContentType(.URL)
-                    .autocorrectionDisabled()
-                    .autocapitalization(.none)
-                    .border(1, .cgBlue.opacity(0.5))
+            Text("Tap on the image to change it")
+                .font(.subheadline)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                .hAlign(.center)
+                .padding(-10)
+            
+            Spacer(minLength: 5)
+            
+            TextField("Username", text:$userName)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                .textContentType(.nickname)
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+            
+            TextField("Email", text:$emailID)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                .textContentType(.emailAddress)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
+            TextField("About You", text:$userBio, axis: .vertical)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                .frame(minHeight: 100, alignment: .top)
+                .textContentType(.nickname)
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+
+            TextField("Bio Link (Optional)", text:$userBioLink)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                .textContentType(.URL)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
                 
                 Button(action: {
                     updateUserInfo { (error) in
@@ -159,14 +165,14 @@ struct EditProfileView: View {
                     }
                 }) {
                     Text("Save Changes")
-                        .foregroundColor(.white)
+                        .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                         .hAlign(.center)
                         .fillView(.oxfordBlue)
+                        .hAlign(.center)
                 }
                 .disableWithOpacity(userName == "" || userBio == "" || emailID == "")
                 .padding(.top,10)
             }
-        }
         .onAppear {
             getUserData()
         }

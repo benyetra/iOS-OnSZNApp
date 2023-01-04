@@ -17,7 +17,8 @@ struct ReusablePostsView: View {
     @State private var isFetching: Bool = true
     /// - Paginatino
     @State private var paginationDoc: QueryDocumentSnapshot?
-    
+    @Environment(\.colorScheme) private var colorScheme
+   
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack{
@@ -29,7 +30,7 @@ struct ReusablePostsView: View {
                         ///No Post's found on firestore
                         Text("No Post's Found")
                             .font(.caption)
-                            .foregroundColor(.cgBlue)
+                            .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                             .padding(.top, 30)
                     } else {
                         /// - Displaying Post's

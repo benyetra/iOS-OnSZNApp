@@ -22,6 +22,7 @@ struct CreateNewPost: View {
     @AppStorage("user_UID") private var userUID: String = ""
     /// - View Properties
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     @State private var isLoading: Bool = false
     @State private var errorMessage: String = ""
     @State private var showError: Bool = false
@@ -39,17 +40,17 @@ struct CreateNewPost: View {
                 } label: {
                     Text("Cancel")
                         .font(.callout)
-                        .foregroundColor(.oxfordBlue)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 }
                 .hAlign(.leading)
                 
                 Button(action: createPost) {
                     Text("Post")
                         .font(.callout)
-                        .foregroundColor(.white)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.cgBlue)
                         .padding(.horizontal,20)
                         .padding(.vertical,6)
-                        .background(Color.oxfordBlue,in: Capsule())
+                        .background(colorScheme == .light ? Color.oxfordBlue : Color.platinum,in: Capsule())
                 }
                 .disableWithOpacity(postText == "")
             }
@@ -102,7 +103,7 @@ struct CreateNewPost: View {
                 } label: {
                     Image(systemName: "photo.on.rectangle")
                         .font(.title3)
-                        .foregroundColor(.oxfordBlue)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 }
                 .hAlign(.leading)
                 
@@ -110,7 +111,7 @@ struct CreateNewPost: View {
                     showKeyboard = false
                 }
             }
-            .foregroundColor(.oxfordBlue)
+            .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
             .padding(.horizontal, 15)
             .padding(.vertical,10)
         }

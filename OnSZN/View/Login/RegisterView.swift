@@ -102,7 +102,7 @@ struct RegisterView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.cgBlue, lineWidth: 1))
+                        .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
                 }
             }
             .frame(width: 85, height: 85)
