@@ -46,7 +46,7 @@ struct TeamView: View {
                 .foregroundColor(team.color)
         }
         VStack {
-            PostsView()
+            TeamPostsView()
         }
     }
 }

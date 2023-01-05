@@ -24,6 +24,7 @@ struct CreateNewPost: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     @State private var isLoading: Bool = false
+    @State private var topicSheetAppear: Bool = false
     @State private var errorMessage: String = ""
     @State private var showError: Bool = false
     @State private var showImagePicker: Bool = false
@@ -106,10 +107,11 @@ struct CreateNewPost: View {
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 }
                 .hAlign(.leading)
-                if showKeyboard == true {
-                    Button("Done") {
-                        showKeyboard = false
-                    }
+                Button("Team Topic") {
+                    showKeyboard = false
+                    topicSheetAppear = true
+                }.sheet(isPresented: $topicSheetAppear) {
+                    SelectTeamTopicView()
                 }
             }
             .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
@@ -152,11 +154,11 @@ struct CreateNewPost: View {
                     let _ = try await storageRef.putDataAsync(postImageData)
                     let downloadURL = try await storageRef.downloadURL()
                     /// Step 3: Create post object with image ID and URL
-                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName, userUID: userUID, userProfileURL: profileURL)
+                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic: "Celtics")
                     try await createDocumentAtFirebase(post)
                 } else {
                     ///Step 2:  Directly Post Text Data to Firebase (Since there is no images present)
-                    let post = Post(text: postText, userName: userName, userUID: userUID, userProfileURL: profileURL)
+                    let post = Post(text: postText, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic: "Celtics")
                     try await createDocumentAtFirebase(post)
                 }
             } catch {
