@@ -18,7 +18,7 @@ struct CreateNewPost: View {
     @State private var postImageData: Data?
     /// - Stored User Data From UserDefaults(AppStorage)
     @AppStorage("user_profile_url") private var profileURL: URL?
-    @AppStorage("user_name") private var userNameStored: String = ""
+    @AppStorage("user_name") private var userName: String = ""
     @AppStorage("user_UID") private var userUID: String = ""
     /// - View Properties
     @Environment(\.dismiss) private var dismiss
@@ -152,11 +152,11 @@ struct CreateNewPost: View {
                     let _ = try await storageRef.putDataAsync(postImageData)
                     let downloadURL = try await storageRef.downloadURL()
                     /// Step 3: Create post object with image ID and URL
-                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userNameStored, userUID: userUID, userProfileURL: profileURL)
+                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName, userUID: userUID, userProfileURL: profileURL)
                     try await createDocumentAtFirebase(post)
                 } else {
                     ///Step 2:  Directly Post Text Data to Firebase (Since there is no images present)
-                    let post = Post(text: postText, userName: userNameStored, userUID: userUID, userProfileURL: profileURL)
+                    let post = Post(text: postText, userName: userName, userUID: userUID, userProfileURL: profileURL)
                     try await createDocumentAtFirebase(post)
                 }
             } catch {
@@ -167,18 +167,19 @@ struct CreateNewPost: View {
     
     func createDocumentAtFirebase(_ post: Post)async throws {
         /// - Writing Document to Firebase Firestore
-        let doc = Firestore.firestore().collection("Posts").document()
-        let _ = try doc.setData(from: post, completion: { error in
+//        let doc = Firestore.firestore().collection("Posts").document()
+        let _ = try Firestore.firestore().collection("Posts").addDocument(from: post, completion: { error in
             if error == nil {
                 /// Post successfully  stored at Firebase
                 isLoading = false
-                var updatedPost = post
-                updatedPost.id = doc.documentID
-                onPost(updatedPost)
+//                var updatedPost = post
+//                updatedPost.id = doc.documentID
+                onPost(post)
                 dismiss()
             }
         })
     }
+    
     //MARK: Displaying Errors as Alert
     func setError(_ error: Error)async {
         await MainActor.run(body: {

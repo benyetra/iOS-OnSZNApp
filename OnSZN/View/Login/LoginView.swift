@@ -46,7 +46,6 @@ struct LoginView: View {
                     .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
                     .padding(.top, 25)
 
-                
                 SecureField("Password", text:$password)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.password)

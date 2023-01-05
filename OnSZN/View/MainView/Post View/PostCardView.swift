@@ -191,7 +191,7 @@ struct PostCardView: View {
                 }
                 /// Step 2: Delete Firestore Document
                 guard let postID =  post.id else {return}
-                try await Firestore.firestore().collection("Posts").document().delete()
+                try await Firestore.firestore().collection("Posts").document(postID).delete()
             } catch {
                 print(error.localizedDescription)
             }
