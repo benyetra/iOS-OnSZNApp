@@ -17,6 +17,7 @@ struct Team: Identifiable {
 
 
 struct TeamRow: View {
+    @Environment(\.colorScheme) private var colorScheme
     var team: Team
     var body: some View {
         HStack {
@@ -25,7 +26,7 @@ struct TeamRow: View {
                 .frame(width: 50, height: 50)
             Text(team.name)
                 .font(.headline)
-                .foregroundColor(.black)
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
         }
     }
 }
@@ -45,7 +46,7 @@ struct TeamView: View {
                 .foregroundColor(team.color)
         }
         VStack {
-            TwitterView.init()
+            PostsView()
         }
     }
 }

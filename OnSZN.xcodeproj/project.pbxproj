@@ -39,10 +39,6 @@
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 		35EA4F8929662146002C6936 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8829662146002C6936 /* TeamView.swift */; };
 		35EA4F8B296623F9002C6936 /* NBA Icons in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4F8A296623F9002C6936 /* NBA Icons */; };
-		35EA4F8D296624A1002C6936 /* Teams in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4F8C296624A1002C6936 /* Teams */; };
-		35EA4F9029662705002C6936 /* TwitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8E29662704002C6936 /* TwitterView.swift */; };
-		35EA4F9129662705002C6936 /* TwitterWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8F29662705002C6936 /* TwitterWebView.swift */; };
-		35EA4F93296637A5002C6936 /* TwitterViewTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4F922966273D002C6936 /* TwitterViewTemplate.html */; };
 		35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35F8A690296088C300DBC936 /* GoogleService-Info.plist */; };
 		35F8A69529636A2100DBC936 /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69429636A2100DBC936 /* Crop.swift */; };
 		35F8A69729636CAC00DBC936 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */; };
@@ -97,10 +93,6 @@
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		35EA4F8829662146002C6936 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		35EA4F8A296623F9002C6936 /* NBA Icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "NBA Icons"; sourceTree = "<group>"; };
-		35EA4F8C296624A1002C6936 /* Teams */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Teams; sourceTree = "<group>"; };
-		35EA4F8E29662704002C6936 /* TwitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterView.swift; sourceTree = "<group>"; };
-		35EA4F8F29662705002C6936 /* TwitterWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterWebView.swift; sourceTree = "<group>"; };
-		35EA4F922966273D002C6936 /* TwitterViewTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = TwitterViewTemplate.html; sourceTree = "<group>"; };
 		35F8A690296088C300DBC936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35F8A69429636A2100DBC936 /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 		35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
@@ -283,11 +275,7 @@
 		35EA4F8129661E9F002C6936 /* TeamsView */ = {
 			isa = PBXGroup;
 			children = (
-				35EA4F8C296624A1002C6936 /* Teams */,
 				35EA4F8829662146002C6936 /* TeamView.swift */,
-				35EA4F922966273D002C6936 /* TwitterViewTemplate.html */,
-				35EA4F8E29662704002C6936 /* TwitterView.swift */,
-				35EA4F8F29662705002C6936 /* TwitterWebView.swift */,
 			);
 			path = TeamsView;
 			sourceTree = "<group>";
@@ -407,12 +395,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35EA4F93296637A5002C6936 /* TwitterViewTemplate.html in Resources */,
 				3552B289295C6E2C00189651 /* Preview Assets.xcassets in Resources */,
 				3552B285295C6E2C00189651 /* Assets.xcassets in Resources */,
 				35EA4F8B296623F9002C6936 /* NBA Icons in Resources */,
 				35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */,
-				35EA4F8D296624A1002C6936 /* Teams in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +429,6 @@
 				35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */,
 				3552DCB5295CAAA80074DCCD /* MainView.swift in Sources */,
 				35EA4F8929662146002C6936 /* TeamView.swift in Sources */,
-				35EA4F9129662705002C6936 /* TwitterWebView.swift in Sources */,
 				355EB4DF295CBC6500F274D7 /* CreateNewPost.swift in Sources */,
 				355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */,
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,
@@ -456,7 +441,6 @@
 				3552B2C5295C73CA00189651 /* LoginView.swift in Sources */,
 				35F8A69529636A2100DBC936 /* Crop.swift in Sources */,
 				3552DCB0295CA9720074DCCD /* RegisterView.swift in Sources */,
-				35EA4F9029662705002C6936 /* TwitterView.swift in Sources */,
 				3552DCAC295C9F6E0074DCCD /* LoadingView.swift in Sources */,
 				3552DCB7295CADA10074DCCD /* ProfileView.swift in Sources */,
 				35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */,
