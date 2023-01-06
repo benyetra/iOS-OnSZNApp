@@ -116,7 +116,7 @@ struct LoginView: View {
         let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
         //MARK: UI Upodating Must be Run on Main Thread
         await MainActor.run(body: {
-            //Setting UserDefaults data and Chaing App's Auth Status
+            //Setting UserDefaults data and Change App's Auth Status
             userUID = userID
             userNameStored = user.username
             profileURL = user.userProfileURL

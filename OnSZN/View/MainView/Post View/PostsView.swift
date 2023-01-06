@@ -42,10 +42,10 @@ struct PostsView: View {
                 .navigationTitle("Post's")
         }
         .fullScreenCover(isPresented: $createNewPost) {
-            CreateNewPost { post in
+            CreateNewPost(onPost: { post in
                 /// Adding created post at the top of the recent posts
                 recentPosts.insert(post, at: 0)
-            }
+            })
         }
     }
 }

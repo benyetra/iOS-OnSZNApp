@@ -16,10 +16,14 @@ struct CreateNewPost: View {
     /// - Post Properties
     @State private var postText: String = ""
     @State private var postImageData: Data?
+    @State var teamTopic: String = ""
+//    @State var selectedTeam: String = ""
+    @State private var selection: String?
     /// - Stored User Data From UserDefaults(AppStorage)
     @AppStorage("user_profile_url") private var profileURL: URL?
     @AppStorage("user_name") private var userName: String = ""
     @AppStorage("user_UID") private var userUID: String = ""
+    @AppStorage("selected_team") var storedSelectedTeam: String = "NBAWhereAmazingHappens"
     /// - View Properties
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
@@ -95,6 +99,11 @@ struct CreateNewPost: View {
                 }
                 .padding(15)
             }
+            Text("#\(storedSelectedTeam)")
+                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                .hAlign(.trailingFirstTextBaseline)
+                .font(.caption)
+                .fontWeight(.semibold)
             
             Divider()
             
@@ -107,11 +116,17 @@ struct CreateNewPost: View {
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 }
                 .hAlign(.leading)
+                
                 Button("Team Topic") {
                     showKeyboard = false
-                    topicSheetAppear = true
+                    topicSheetAppear.toggle()
                 }.sheet(isPresented: $topicSheetAppear) {
-                    SelectTeamTopicView()
+                    SelectTeamTopicView(selection: $selection)
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Save Selection")
+                    }
                 }
             }
             .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
@@ -154,11 +169,11 @@ struct CreateNewPost: View {
                     let _ = try await storageRef.putDataAsync(postImageData)
                     let downloadURL = try await storageRef.downloadURL()
                     /// Step 3: Create post object with image ID and URL
-                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic: "Celtics")
+                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic: storedSelectedTeam)
                     try await createDocumentAtFirebase(post)
                 } else {
                     ///Step 2:  Directly Post Text Data to Firebase (Since there is no images present)
-                    let post = Post(text: postText, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic: "Celtics")
+                    let post = Post(text: postText, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic:storedSelectedTeam)
                     try await createDocumentAtFirebase(post)
                 }
             } catch {
@@ -169,16 +184,14 @@ struct CreateNewPost: View {
     
     func createDocumentAtFirebase(_ post: Post)async throws {
         /// - Writing Document to Firebase Firestore
-//        let doc = Firestore.firestore().collection("Posts").document()
         let _ = try Firestore.firestore().collection("Posts").addDocument(from: post, completion: { error in
             if error == nil {
                 /// Post successfully  stored at Firebase
                 isLoading = false
-//                var updatedPost = post
-//                updatedPost.id = doc.documentID
                 onPost(post)
                 dismiss()
             }
+            dismiss()
         })
     }
     
@@ -191,9 +204,76 @@ struct CreateNewPost: View {
     }
 }
 
-struct CreateNewPost_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateNewPost{_ in
+struct Teams: Hashable {
+    let name: String
+    let icon: String
+}
+
+let teams = [
+    Teams(name: "Bucks", icon: "Bucks"),
+    Teams(name: "Celtics", icon: "Celtics"),
+    Teams(name: "Hawks", icon: "Hawks"),
+    Teams(name: "Heat", icon: "Heat"),
+    Teams(name: "Jazz", icon: "Jazz"),
+    Teams(name: "Kings", icon: "Kings"),
+    Teams(name: "Lakers", icon: "Lakers"),
+    Teams(name: "Mavericks", icon: "Mavericks"),
+    Teams(name: "Nets", icon: "Nets"),
+    Teams(name: "Nuggets", icon: "Nuggets"),
+    Teams(name: "Pacers", icon: "Pacers"),
+    Teams(name: "Pelicans", icon: "Pelicans"),
+    Teams(name: "Pistons", icon: "Pistons"),
+    Teams(name: "Raptors", icon: "Raptors"),
+    Teams(name: "Rockets", icon: "Rockets"),
+    Teams(name: "Sixers", icon: "Sixers"),
+    Teams(name: "Suns", icon: "Suns"),
+    Teams(name: "Thunder", icon: "Thunder"),
+    Teams(name: "Timberwolves", icon: "Timberwolves"),
+    Teams(name: "Trail Blazers", icon: "Trail Blazers"),
+    Teams(name: "Warriors", icon: "Warriors"),
+    Teams(name: "Wizards", icon: "Wizards")
+]
+
+
+struct SelectTeamTopicView: View {
+    @Binding var selection: String?
+    @State private var selectedTeam: Teams?
+    @State var teamTopic: String = ""
+    @Environment(\.dismiss) private var dismiss
+    @AppStorage("selected_team") private var storedSelectedTeam: String = "NBAWhereAmazingHappens"
+
+
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Select The NBA Topic:")
+                    .font(.body)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 20, leading: 21, bottom: 0, trailing: 21))
+            List {
+                ForEach(teams, id: \.self) { teams in
+                    Button(action: {
+                        self.selectedTeam = teams
+                        storedSelectedTeam = self.selectedTeam?.name ?? "NBAWhereAmazingHappens"
+                    }) {
+                        HStack {
+                            Image(teams.icon)
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                                .shadow(radius: 5)
+                                .opacity(self.selectedTeam == teams ? 1 : 0.5)
+                            Text(teams.name)
+                                .font(.body)
+                                .foregroundColor(self.selectedTeam == teams ? Color.cgBlue : Color.gray)
+                        }
+                    }
+                }
+            }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+            Spacer()
         }
     }
 }

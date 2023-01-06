@@ -20,6 +20,7 @@ struct PostCardView: View {
     @State private var docListner: ListenerRegistration?
     @State private var showLightbox = false
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {

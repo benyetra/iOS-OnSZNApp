@@ -59,7 +59,7 @@ struct EditProfileView: View {
                 Text("Want to revisit this later?")
                     .foregroundColor(.gray)
                 Button("Cancel") {
-                    dismiss ()
+                    dismiss()
                 }
                 .fontWeight(.bold)
             }

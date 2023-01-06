@@ -59,7 +59,7 @@ struct RegisterView: View {
                 Text("Already have an account?")
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                 Button("Login Now") {
-                    dismiss ()
+                    dismiss()
                 }
                 .fontWeight(.bold)
                 .foregroundColor(.cgBlue)
