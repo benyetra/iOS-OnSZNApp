@@ -61,7 +61,7 @@ struct PostCardView: View {
                     }
                     .frame(height: 200)
                 }
-                Text("#\(post.teamTopic)")
+                Text(post.teamTopic)
                     .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                     .hAlign(.trailingFirstTextBaseline)
                     .font(.caption)
