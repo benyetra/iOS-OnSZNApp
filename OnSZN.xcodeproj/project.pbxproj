@@ -35,8 +35,11 @@
 		355EB4E5295CF36500F274D7 /* ReusablePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */; };
 		355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E6295CFAB500F274D7 /* PostCardView.swift */; };
 		356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FE86A295E629A00FD782B /* EditProfileView.swift */; };
+		357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
+		35EA4F8929662146002C6936 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8829662146002C6936 /* TeamView.swift */; };
+		35EA4F8B296623F9002C6936 /* NBA Icons in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4F8A296623F9002C6936 /* NBA Icons */; };
 		35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35F8A690296088C300DBC936 /* GoogleService-Info.plist */; };
 		35F8A69529636A2100DBC936 /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69429636A2100DBC936 /* Crop.swift */; };
 		35F8A69729636CAC00DBC936 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */; };
@@ -87,8 +90,11 @@
 		355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePostsView.swift; sourceTree = "<group>"; };
 		355EB4E6295CFAB500F274D7 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		356FE86A295E629A00FD782B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTeamPostsView.swift; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		35EA4F8829662146002C6936 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
+		35EA4F8A296623F9002C6936 /* NBA Icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "NBA Icons"; sourceTree = "<group>"; };
 		35F8A690296088C300DBC936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35F8A69429636A2100DBC936 /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 		35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
@@ -150,11 +156,10 @@
 			children = (
 				3552B2C3295C734600189651 /* Model */,
 				3552B2C2295C734100189651 /* View */,
-				3552DCAB295C9F6E0074DCCD /* LoadingView.swift */,
-				3552B27B295C6E2A00189651 /* OnSZNApp.swift */,
 				3552B27D295C6E2A00189651 /* Persistence.swift */,
-				3552B282295C6E2A00189651 /* ContentView.swift */,
+				3552B27B295C6E2A00189651 /* OnSZNApp.swift */,
 				3552B284295C6E2C00189651 /* Assets.xcassets */,
+				35EA4F8A296623F9002C6936 /* NBA Icons */,
 				3552B286295C6E2C00189651 /* OnSZN.entitlements */,
 				3552B27F295C6E2A00189651 /* OnSZN.xcdatamodeld */,
 				35F8A690296088C300DBC936 /* GoogleService-Info.plist */,
@@ -191,6 +196,9 @@
 		3552B2C2295C734100189651 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35EA2F50295DCB4100CEF35E /* Post View */,
+				35EA2F51295DCB6300CEF35E /* ProfileVIew */,
+				35EA4F8129661E9F002C6936 /* TeamsView */,
 				3552DCB1295CA9F90074DCCD /* Helpers */,
 				3552DCAE295CA92E0074DCCD /* MainView */,
 				3552DCAD295CA92B0074DCCD /* Login */,
@@ -227,12 +235,12 @@
 		3552DCAE295CA92E0074DCCD /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				35EA2F51295DCB6300CEF35E /* ProfileVIew */,
-				35EA2F50295DCB4100CEF35E /* Post View */,
 				3552DCB4295CAAA80074DCCD /* MainView.swift */,
 				355EB4DE295CBC6400F274D7 /* CreateNewPost.swift */,
 				35EA2F52295DCE2500CEF35E /* SearchUserView.swift */,
 				35F8A69629636CAC00DBC936 /* CustomImagePicker.swift */,
+				3552DCAB295C9F6E0074DCCD /* LoadingView.swift */,
+				3552B282295C6E2A00189651 /* ContentView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -264,6 +272,15 @@
 				356FE86A295E629A00FD782B /* EditProfileView.swift */,
 			);
 			path = ProfileVIew;
+			sourceTree = "<group>";
+		};
+		35EA4F8129661E9F002C6936 /* TeamsView */ = {
+			isa = PBXGroup;
+			children = (
+				35EA4F8829662146002C6936 /* TeamView.swift */,
+				357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */,
+			);
+			path = TeamsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +400,7 @@
 			files = (
 				3552B289295C6E2C00189651 /* Preview Assets.xcassets in Resources */,
 				3552B285295C6E2C00189651 /* Assets.xcassets in Resources */,
+				35EA4F8B296623F9002C6936 /* NBA Icons in Resources */,
 				35F8A691296088C300DBC936 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +430,9 @@
 				3552DCB3295CAA080074DCCD /* View+Extensions.swift in Sources */,
 				3552B27C295C6E2A00189651 /* OnSZNApp.swift in Sources */,
 				35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */,
+				357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */,
 				3552DCB5295CAAA80074DCCD /* MainView.swift in Sources */,
+				35EA4F8929662146002C6936 /* TeamView.swift in Sources */,
 				355EB4DF295CBC6500F274D7 /* CreateNewPost.swift in Sources */,
 				355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */,
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,

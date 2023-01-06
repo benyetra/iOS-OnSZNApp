@@ -21,6 +21,7 @@ struct Post: Identifiable,Codable,Equatable,Hashable {
     var userName: String
     var userUID: String
     var userProfileURL: URL
+    var teamTopic: String
     
     enum CodingKeys: CodingKey {
         case id
@@ -33,5 +34,6 @@ struct Post: Identifiable,Codable,Equatable,Hashable {
         case userName
         case userUID
         case userProfileURL
+        case teamTopic
     }
 }
