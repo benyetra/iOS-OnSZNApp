@@ -206,6 +206,7 @@ struct Teams: Hashable {
 }
 
 let teams = [
+        Teams(name: "NBA", icon: "nbaicon"),
         Teams(name: "Toronto Raptors", icon: "Raptors"),
         Teams(name: "Boston Celtics", icon: "Celtics"),
         Teams(name: "Brooklyn Nets", icon: "Nets"),
@@ -224,7 +225,7 @@ let teams = [
         Teams(name: "Denver Nuggets", icon: "Nuggets"),
         Teams(name: "Oklahmoma City Thunder", icon: "Thunder"),
         Teams(name: "Utah Jazz", icon: "Jazz"),
-        Teams(name: "Portland Trail Blazers", icon: "Blazers"),
+        Teams(name: "Portland Trail Blazers", icon: "Trail Blazers"),
         Teams(name: "Minnesota Timberwolves", icon: "Timberwolves"),
         Teams(name: "Los Angeles Lakers", icon: "Lakers"),
         Teams(name: "Los Angeles Clippers", icon: "Clippers"),

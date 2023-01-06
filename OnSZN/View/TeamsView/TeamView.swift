@@ -57,6 +57,7 @@ struct ContentsView: View {
     var body: some View {
        
         let teams = [
+            Team(name: "NBA", icon: "nbaicon", slogan: "#WhereAmazingHappens", color: .blue),
             Team(name: "Toronto Raptors", icon: "Raptors", slogan: "#WeTheNorth", color: .red),
             Team(name: "Boston Celtics", icon: "Celtics", slogan: "#BleedGreen", color: .green),
             Team(name: "Brooklyn Nets", icon: "Nets", slogan: "#BrooklynGrit", color: .black),
