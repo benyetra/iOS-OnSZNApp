@@ -17,7 +17,6 @@ struct CreateNewPost: View {
     @State private var postText: String = ""
     @State private var postImageData: Data?
     @State var teamTopic: String = ""
-//    @State var selectedTeam: String = ""
     @State private var selection: String?
     /// - Stored User Data From UserDefaults(AppStorage)
     @AppStorage("user_profile_url") private var profileURL: URL?
@@ -102,7 +101,7 @@ struct CreateNewPost: View {
             Text("#\(storedSelectedTeam)")
                 .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 .hAlign(.trailingFirstTextBaseline)
-                .font(.caption)
+                .font(.callout)
                 .fontWeight(.semibold)
             
             Divider()
@@ -122,11 +121,9 @@ struct CreateNewPost: View {
                     topicSheetAppear.toggle()
                 }.sheet(isPresented: $topicSheetAppear) {
                     SelectTeamTopicView(selection: $selection)
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Text("Save Selection")
-                    }
+                    Text("Swipe Down to Dismiss")
+                        .font(.subheadline)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                 }
             }
             .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
@@ -191,7 +188,6 @@ struct CreateNewPost: View {
                 onPost(post)
                 dismiss()
             }
-            dismiss()
         })
     }
     
@@ -210,28 +206,36 @@ struct Teams: Hashable {
 }
 
 let teams = [
-    Teams(name: "Bucks", icon: "Bucks"),
-    Teams(name: "Celtics", icon: "Celtics"),
-    Teams(name: "Hawks", icon: "Hawks"),
-    Teams(name: "Heat", icon: "Heat"),
-    Teams(name: "Jazz", icon: "Jazz"),
-    Teams(name: "Kings", icon: "Kings"),
-    Teams(name: "Lakers", icon: "Lakers"),
-    Teams(name: "Mavericks", icon: "Mavericks"),
-    Teams(name: "Nets", icon: "Nets"),
-    Teams(name: "Nuggets", icon: "Nuggets"),
-    Teams(name: "Pacers", icon: "Pacers"),
-    Teams(name: "Pelicans", icon: "Pelicans"),
-    Teams(name: "Pistons", icon: "Pistons"),
-    Teams(name: "Raptors", icon: "Raptors"),
-    Teams(name: "Rockets", icon: "Rockets"),
-    Teams(name: "Sixers", icon: "Sixers"),
-    Teams(name: "Suns", icon: "Suns"),
-    Teams(name: "Thunder", icon: "Thunder"),
-    Teams(name: "Timberwolves", icon: "Timberwolves"),
-    Teams(name: "Trail Blazers", icon: "Trail Blazers"),
-    Teams(name: "Warriors", icon: "Warriors"),
-    Teams(name: "Wizards", icon: "Wizards")
+        Teams(name: "Toronto Raptors", icon: "Raptors"),
+        Teams(name: "Boston Celtics", icon: "Celtics"),
+        Teams(name: "Brooklyn Nets", icon: "Nets"),
+        Teams(name: "New York Knicks", icon: "Knicks"),
+        Teams(name: "Philadelphia 76ers", icon: "Sixers"),
+        Teams(name: "Milwaukee Bucks", icon: "Bucks"),
+        Teams(name: "Indiana Pacers", icon: "Pacers"),
+        Teams(name: "Chicago Bulls", icon: "Bulls"),
+        Teams(name: "Detroit Pistons", icon: "Pistons"),
+        Teams(name: "Cleveland Cavaliers", icon: "Cavaliers"),
+        Teams(name: "Miami Heat", icon: "Heat"),
+        Teams(name: "Orlando Magic", icon: "Magic"),
+        Teams(name: "Charlotte Hornets", icon: "Hornets"),
+        Teams(name: "Washington Wizards", icon: "Wizards"),
+        Teams(name: "Atlanta Hawks", icon: "Hawks"),
+        Teams(name: "Denver Nuggets", icon: "Nuggets"),
+        Teams(name: "Oklahmoma City Thunder", icon: "Thunder"),
+        Teams(name: "Utah Jazz", icon: "Jazz"),
+        Teams(name: "Portland Trail Blazers", icon: "Blazers"),
+        Teams(name: "Minnesota Timberwolves", icon: "Timberwolves"),
+        Teams(name: "Los Angeles Lakers", icon: "Lakers"),
+        Teams(name: "Los Angeles Clippers", icon: "Clippers"),
+        Teams(name: "Phoenix Suns", icon: "Suns"),
+        Teams(name: "Sacramento Kings", icon: "Kings"),
+        Teams(name: "Golden State Warriors", icon: "Warriors"),
+        Teams(name: "Houston Rockets", icon: "Rockets"),
+        Teams(name: "Dallas Mavericks", icon: "Mavericks"),
+        Teams(name: "Memphis Grizzlies", icon: "Grizzlies"),
+        Teams(name: "San Antonio Spurs", icon: "Spurs"),
+        Teams(name: "New Orleans Pelicans", icon: "Pelicans")
 ]
 
 
@@ -239,7 +243,6 @@ struct SelectTeamTopicView: View {
     @Binding var selection: String?
     @State private var selectedTeam: Teams?
     @State var teamTopic: String = ""
-    @Environment(\.dismiss) private var dismiss
     @AppStorage("selected_team") private var storedSelectedTeam: String = "NBAWhereAmazingHappens"
 
 

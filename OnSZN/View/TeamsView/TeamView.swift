@@ -32,12 +32,14 @@ struct TeamRow: View {
 }
 
 struct TeamView: View {
+    @State private var fetchedPosts: [Post] = []
+    @State private var teamName: String?
     var team: Team
     var body: some View {
         VStack {
             Image(team.icon)
                 .resizable()
-                .frame(width: 65, height: 65)
+                .frame(width: 50, height: 50)
             Text(team.name)
                 .font(.title)
                 .foregroundColor(team.color)
@@ -46,7 +48,7 @@ struct TeamView: View {
                 .foregroundColor(team.color)
         }
         VStack {
-            TeamPostsView()
+            ReusableTeamPostsView(basedOnTeamTopic: true, posts: $fetchedPosts, teamName: team.name)
         }
     }
 }
