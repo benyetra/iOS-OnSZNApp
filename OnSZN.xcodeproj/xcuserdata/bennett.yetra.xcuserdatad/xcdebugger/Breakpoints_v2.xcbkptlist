@@ -194,53 +194,6 @@
             endingLineNumber = "157"
             landmarkName = "likePost()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "36E66AE3-653D-4DB1-9A2C-EF40BE9DE62E - f488a1e85014d947"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in OnSZN.PostCardView.likePost() -&gt; ()"
-                  moduleName = "OnSZN"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/MainView/Post%20View/PostCardView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "157"
-                  endingLineNumber = "157"
-                  offsetFromSymbolStart = "224">
-               </Location>
-               <Location
-                  uuid = "36E66AE3-653D-4DB1-9A2C-EF40BE9DE62E - 4595ff4df23f1d49"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in OnSZN.PostCardView.likePost() -&gt; ()"
-                  moduleName = "OnSZN"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/MainView/Post%20View/PostCardView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "157"
-                  endingLineNumber = "157"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  uuid = "36E66AE3-653D-4DB1-9A2C-EF40BE9DE62E - d293352114c6514b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in OnSZN.PostCardView.likePost() -&gt; ()"
-                  moduleName = "OnSZN"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bennett.yetra/Documents/Personal/Live%20Apps/iOS-OnSZNApp/OnSZN/View/MainView/Post%20View/PostCardView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "157"
-                  endingLineNumber = "157"
-                  offsetFromSymbolStart = "92">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

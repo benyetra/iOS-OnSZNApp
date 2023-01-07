@@ -132,7 +132,6 @@ struct PostCardView: View {
             Button(action: likePost) {
                 Image(systemName: post.likedIDs.contains(userUID) ? "hand.thumbsup.fill" : "hand.thumbsup")
                     .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-
             }
             Text("\(post.likedIDs.count)")
                 .font(.caption)
@@ -145,7 +144,7 @@ struct PostCardView: View {
             .padding(.leading, 25)
             Text("\(post.dislikedIDs.count)")
                 .font(.caption)
-                .foregroundColor(colorScheme == .light ? Color.platinum : Color.platinum)
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.gray)
         }
         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
         .padding(.vertical, 8)

@@ -25,6 +25,8 @@ struct PostsView: View {
                             .foregroundColor(colorScheme == .light ? Color.platinum : Color.oxfordBlue)
                             .padding(13)
                             .background(colorScheme == .light ? Color.oxfordBlue : Color.platinum, in: Circle())
+                            .overlay(Circle().stroke(colorScheme == .light ? Color.platinum : Color.oxfordBlue,
+                            lineWidth: 1))
                     }
                     .padding(15)
                 }
