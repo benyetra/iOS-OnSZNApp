@@ -130,7 +130,7 @@ struct EditProfileView: View {
             
             TextField("Username", text:$userName)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .textContentType(.nickname)
+                .textContentType(.username)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))

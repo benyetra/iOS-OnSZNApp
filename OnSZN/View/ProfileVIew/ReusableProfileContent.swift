@@ -32,7 +32,7 @@ struct ReusableProfileContent: View {
                     }
                                         
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(user.username)
+                        Text("@\(user.username)")
                             .font(.title3)
                             .fontWeight(.semibold)
                             .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)

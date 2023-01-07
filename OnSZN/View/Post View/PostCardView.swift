@@ -32,7 +32,7 @@ struct PostCardView: View {
                 .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
             
             VStack(alignment: .leading, spacing: 6) {
-                Text(post.userName)
+                Text("@\(post.userName)")
                     .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                     .font(.callout)
                     .fontWeight(.semibold)
