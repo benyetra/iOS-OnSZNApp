@@ -19,7 +19,7 @@ struct SearchUserView: View {
                 NavigationLink {
                     ReusableProfileContent(user: user)
                 } label: {
-                    Text(user.username)
+                    Text("@\(user.username)")
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         .font(.callout)
                         .hAlign(.leading)
