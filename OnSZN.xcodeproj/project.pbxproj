@@ -36,6 +36,10 @@
 		355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E6295CFAB500F274D7 /* PostCardView.swift */; };
 		356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FE86A295E629A00FD782B /* EditProfileView.swift */; };
 		357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */; };
+		35873D69296A371700E1C128 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 35873D68296A371700E1C128 /* GoogleSignIn */; };
+		35873D6B296A371700E1C128 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 35873D6A296A371700E1C128 /* GoogleSignInSwift */; };
+		35873D6E296A3B5200E1C128 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D6D296A3B5200E1C128 /* CustomTextField.swift */; };
+		35873D70296A3EE500E1C128 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D6F296A3EE500E1C128 /* LoginViewModel.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 		35EA4F8929662146002C6936 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8829662146002C6936 /* TeamView.swift */; };
@@ -91,6 +95,9 @@
 		355EB4E6295CFAB500F274D7 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		356FE86A295E629A00FD782B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTeamPostsView.swift; sourceTree = "<group>"; };
+		35873D6C296A3AB700E1C128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		35873D6D296A3B5200E1C128 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		35873D6F296A3EE500E1C128 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		35EA4F8829662146002C6936 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
@@ -107,9 +114,11 @@
 			files = (
 				355EB4DD295CB73B00F274D7 /* SDWebImageSwiftUI in Frameworks */,
 				3552B2B3295C70FC00189651 /* FirebaseAuth in Frameworks */,
+				35873D6B296A371700E1C128 /* GoogleSignInSwift in Frameworks */,
 				3552B2CC295C920900189651 /* FirebaseStorage in Frameworks */,
 				3552B2C8295C920900189651 /* FirebaseFirestore in Frameworks */,
 				3552B2CA295C920900189651 /* FirebaseFirestoreSwift in Frameworks */,
+				35873D69296A371700E1C128 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +163,7 @@
 		3552B27A295C6E2A00189651 /* OnSZN */ = {
 			isa = PBXGroup;
 			children = (
+				35873D6C296A3AB700E1C128 /* Info.plist */,
 				3552B2C3295C734600189651 /* Model */,
 				3552B2C2295C734100189651 /* View */,
 				3552B27D295C6E2A00189651 /* Persistence.swift */,
@@ -212,6 +222,7 @@
 				3552DCA9295C97DE0074DCCD /* User.swift */,
 				355EB4E0295CBCA900F274D7 /* Post.swift */,
 				35F8A69429636A2100DBC936 /* Crop.swift */,
+				35873D6F296A3EE500E1C128 /* LoginViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 			children = (
 				3552DCB2295CAA080074DCCD /* View+Extensions.swift */,
 				35EA2F54295E04D600CEF35E /* CustomColors.swift */,
+				35873D6D296A3B5200E1C128 /* CustomTextField.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -305,6 +317,8 @@
 				3552B2C9295C920900189651 /* FirebaseFirestoreSwift */,
 				3552B2CB295C920900189651 /* FirebaseStorage */,
 				355EB4DC295CB73B00F274D7 /* SDWebImageSwiftUI */,
+				35873D68296A371700E1C128 /* GoogleSignIn */,
+				35873D6A296A371700E1C128 /* GoogleSignInSwift */,
 			);
 			productName = OnSZN;
 			productReference = 3552B278295C6E2A00189651 /* OnSZN.app */;
@@ -354,7 +368,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					3552B277295C6E2A00189651 = {
 						CreatedOnToolsVersion = 14.1;
@@ -381,6 +395,7 @@
 			packageReferences = (
 				3552B2AF295C70FC00189651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				355EB4DB295CB73B00F274D7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				35873D67296A371700E1C128 /* XCRemoteSwiftPackageReference "googlesignin-ios" */,
 			);
 			productRefGroup = 3552B279295C6E2A00189651 /* Products */;
 			projectDirPath = "";
@@ -434,7 +449,9 @@
 				3552DCB5295CAAA80074DCCD /* MainView.swift in Sources */,
 				35EA4F8929662146002C6936 /* TeamView.swift in Sources */,
 				355EB4DF295CBC6500F274D7 /* CreateNewPost.swift in Sources */,
+				35873D70296A3EE500E1C128 /* LoginViewModel.swift in Sources */,
 				355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */,
+				35873D6E296A3B5200E1C128 /* CustomTextField.swift in Sources */,
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,
 				3552DCAA295C97DE0074DCCD /* User.swift in Sources */,
 				3552B283295C6E2A00189651 /* ContentView.swift in Sources */,
@@ -519,6 +536,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -577,6 +595,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -607,6 +626,7 @@
 				DEVELOPMENT_TEAM = 87A6J7UY87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OnSZN/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OnSZN;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -627,7 +647,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = byetz.OnSZN;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.byetz.OnSZN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -647,6 +667,7 @@
 				DEVELOPMENT_TEAM = 87A6J7UY87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OnSZN/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OnSZN;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -667,7 +688,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = byetz.OnSZN;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.byetz.OnSZN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -682,6 +703,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -704,6 +726,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -725,6 +748,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -746,6 +770,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -819,6 +844,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		35873D67296A371700E1C128 /* XCRemoteSwiftPackageReference "googlesignin-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/googlesignin-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -846,6 +879,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 355EB4DB295CB73B00F274D7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		35873D68296A371700E1C128 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35873D67296A371700E1C128 /* XCRemoteSwiftPackageReference "googlesignin-ios" */;
+			productName = GoogleSignIn;
+		};
+		35873D6A296A371700E1C128 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35873D67296A371700E1C128 /* XCRemoteSwiftPackageReference "googlesignin-ios" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

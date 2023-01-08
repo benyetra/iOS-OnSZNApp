@@ -10,6 +10,7 @@ import Firebase
 
 @main
 struct OnSZNApp: App {
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     init() {
         FirebaseApp.configure()
     }
@@ -20,5 +21,10 @@ struct OnSZNApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async
+    -> UIBackgroundFetchResult {
+        return .noData
     }
 }

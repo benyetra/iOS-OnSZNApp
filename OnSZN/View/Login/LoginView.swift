@@ -9,9 +9,13 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
+import AuthenticationServices
 
 struct LoginView: View {
     @Environment(\.colorScheme) private var colorScheme
+    @StateObject var loginModel: LoginViewModel = .init()
+    @StateObject var loginData = LoginViewModel()
+    
     //MARK: User Details
     @State var emailID: String = ""
     @State var password: String = ""
@@ -53,6 +57,53 @@ struct LoginView: View {
                     .autocapitalization(.none)
                     .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
 
+                //MARK: PHONE LOGIN
+                CustomTextField(hint: "+1 6505551234", text: $loginModel.mobileNo)
+                    .disabled(loginModel.showOTPField)
+                    .opacity(loginModel.showOTPField ? 0.4 : 1)
+                    .overlay(alignment: .trailing, content: {
+                        Button("Change") {
+                            withAnimation(.easeInOut) {
+                                loginModel.showOTPField = false
+                                loginModel.otpCode = ""
+                                loginModel.CLIENT_CODE = ""
+                            }
+                        }
+                        .font(.caption)
+                        .foregroundColor(.indigo)
+                        .opacity(loginModel.showOTPField ? 1 : 0)
+                        .padding(.trailing, 15)
+                    })
+                    .padding(.top, 50)
+                
+                CustomTextField(hint: "OTP Code", text: $loginModel.otpCode)
+                    .disabled(!loginModel.showOTPField)
+                    .opacity(!loginModel.showOTPField ? 0.4 : 1)
+                    .padding(.top, 20)
+
+                Button(action: loginModel.showOTPField ? loginModel.verifyOTPCode
+                       : loginModel.getOTPCode) {
+                    HStack(spacing: 15) {
+                        Text(loginModel.showOTPField ? "Verify Code" : "Get Code")
+                            .fontWeight(.semibold)
+                            .contentTransition(.identity)
+                            
+                            Image(systemName: "line.diagonal.arrow")
+                                .font(.title3)
+                                .rotationEffect(.init(degrees: 45))
+                        }
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 25)
+                        .padding(.vertical)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.black.opacity(0.05))
+                        }
+                    }
+                    .padding(.top, 30)
+                }
+                    
+                
                 Button("Reset Password?", action:resetPassword)
                     .font(.callout)
                     .fontWeight(.medium)
@@ -67,7 +118,32 @@ struct LoginView: View {
                         .fillView(.oxfordBlue)
                 }
                 .padding(.top,10)
+            
+            //MARK: Apple Sign In
+            SignInWithAppleButton { (request) in
+                loginData.nonce = randomNonceString()
+                request.requestedScopes = [.email, .fullName]
+                request.nonce = sha256(loginData.nonce)
+            } onCompletion: { (result) in
+                switch result {
+                case .success(let user):
+                    print("Success")
+                    guard let credential = user.credential as?
+                            ASAuthorizationAppleIDCredential else {
+                        print("error with firebase")
+                        return
+                    }
+                    loginData.authenticate(credential: credential)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
+            .signInWithAppleButtonStyle(.white)
+            .frame(height:55)
+            .clipShape(Capsule())
+            .padding(.horizontal, 40)
+            .offset(y: -70)
+        }
             
             //MARK: Register Button
             HStack {
@@ -82,6 +158,7 @@ struct LoginView: View {
             .font(.callout)
             .vAlign(.bottom)
         }
+//        .alert(loginModel.errorMessage, isPresented: $loginModel.showError) {
         .vAlign(.top)
         .padding(15)
         .overlay(content: {
