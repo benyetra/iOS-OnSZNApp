@@ -68,9 +68,15 @@ struct LoginView: View {
                 Button(action: loginUser) {
                     //MARK: Login Button
                     Text("Sign in")
-                        .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 25)
+                        .padding(.vertical)
+                        .background {
+                            Capsule(style: .continuous)
+                                .fill(.black.opacity(0.05))
+                        }
                         .hAlign(.center)
-                        .fillView(.oxfordBlue)
                 }
                 .padding(.top,10)
                 
