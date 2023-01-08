@@ -85,7 +85,6 @@ struct PhoneLoginView: View {
                 }
                 .padding(.top, 30)
                 .font(.callout)
-                .vAlign(.bottom)
             }.alert(loginModel.errorMessage, isPresented: $loginModel.showError) {
             }
         }
