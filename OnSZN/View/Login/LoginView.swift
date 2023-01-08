@@ -29,6 +29,7 @@ struct LoginView: View {
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
+    
     var body: some View {
         VStack(spacing:10) {
             Text("Lets sign you in!")
@@ -101,7 +102,6 @@ struct LoginView: View {
                         }
                     }
                     .padding(.top, 30)
-                }
                     
                 
                 Button("Reset Password?", action:resetPassword)

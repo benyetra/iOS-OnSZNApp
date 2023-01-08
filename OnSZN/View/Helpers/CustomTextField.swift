@@ -33,9 +33,3 @@ struct CustomTextField: View {
         }
     }
 }
-
-struct CustomTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomTextField(hint: <#String#>, text: <#Binding<String>#>)
-    }
-}
