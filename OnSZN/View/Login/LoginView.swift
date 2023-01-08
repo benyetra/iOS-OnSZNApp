@@ -68,13 +68,14 @@ struct LoginView: View {
                 Button(action: loginUser) {
                     //MARK: Login Button
                     Text("Sign in")
-                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .foregroundColor(colorScheme == .light ? Color.platinum : Color.oxfordBlue)
                         .fontWeight(.bold)
-                        .padding(.horizontal, 25)
                         .padding(.vertical)
+                        .frame(height:55)
+                        .padding(.horizontal, 40)
                         .background {
                             Capsule(style: .continuous)
-                                .fill(.black.opacity(0.05))
+                                .fill(colorScheme == .light ? Color.oxfordBlue : Color.platinum.opacity(0.05))
                         }
                         .hAlign(.center)
                 }
@@ -105,12 +106,21 @@ struct LoginView: View {
                         .frame(height:55)
                         .clipShape(Capsule())
                         .padding(.horizontal, 40)
-                        
-                        Button("Login with Phone") {
+                        Button {
                             phoneLogin.toggle()
+                        } label: {
+                            HStack {
+                                Image(systemName: "phone.fill")
+                                Text("Sign In With Phone")
+                            }
                         }
                         .fontWeight(.bold)
-                        .foregroundColor(.cgBlue)
+                        .padding(.vertical)
+                        .frame(height:55)
+                        .padding(.horizontal, 40)
+                        .font(.title3)
+                        .foregroundColor(colorScheme == .light ? Color.platinum : Color.oxfordBlue)
+                        .background(colorScheme == .light ? Color.oxfordBlue : Color.platinum, in: Capsule())
                         .fullScreenCover(isPresented: $phoneLogin){
                             PhoneLoginView()
                         }
