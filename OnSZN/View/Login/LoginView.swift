@@ -119,8 +119,8 @@ struct LoginView: View {
                         .frame(height:55)
                         .padding(.horizontal, 40)
                         .font(.title3)
-                        .foregroundColor(colorScheme == .light ? Color.platinum : Color.oxfordBlue)
-                        .background(colorScheme == .light ? Color.oxfordBlue : Color.platinum, in: Capsule())
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.oxfordBlue)
+                        .background(colorScheme == .light ? Color.platinum : Color.platinum, in: Capsule())
                         .fullScreenCover(isPresented: $phoneLogin){
                             PhoneLoginView()
                         }
