@@ -40,6 +40,7 @@
 		35873D6B296A371700E1C128 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 35873D6A296A371700E1C128 /* GoogleSignInSwift */; };
 		35873D6E296A3B5200E1C128 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D6D296A3B5200E1C128 /* CustomTextField.swift */; };
 		35873D70296A3EE500E1C128 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D6F296A3EE500E1C128 /* LoginViewModel.swift */; };
+		35873D72296A610400E1C128 /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D71296A610400E1C128 /* PhoneLoginView.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 		35EA4F8929662146002C6936 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8829662146002C6936 /* TeamView.swift */; };
@@ -98,6 +99,7 @@
 		35873D6C296A3AB700E1C128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		35873D6D296A3B5200E1C128 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		35873D6F296A3EE500E1C128 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		35873D71296A610400E1C128 /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		35EA4F8829662146002C6936 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				3552B2C4295C73CA00189651 /* LoginView.swift */,
 				3552DCAF295CA9720074DCCD /* RegisterView.swift */,
+				35873D71296A610400E1C128 /* PhoneLoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				3552DCB0295CA9720074DCCD /* RegisterView.swift in Sources */,
 				3552DCAC295C9F6E0074DCCD /* LoadingView.swift in Sources */,
 				3552DCB7295CADA10074DCCD /* ProfileView.swift in Sources */,
+				35873D72296A610400E1C128 /* PhoneLoginView.swift in Sources */,
 				35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */,
 				355EB4DA295CB45200F274D7 /* ReusableProfileContent.swift in Sources */,
 				3552B27E295C6E2A00189651 /* Persistence.swift in Sources */,

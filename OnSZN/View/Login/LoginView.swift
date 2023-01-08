@@ -21,6 +21,7 @@ struct LoginView: View {
     @State var password: String = ""
     //MARK: View Properties
     @State var createAccount: Bool = false
+    @State var phoneLogin: Bool = false
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
@@ -50,59 +51,13 @@ struct LoginView: View {
                     .autocorrectionDisabled()
                     .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
                     .padding(.top, 25)
-
+                
                 SecureField("Password", text:$password)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.password)
                     .autocorrectionDisabled()
                     .autocapitalization(.none)
                     .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-
-                //MARK: PHONE LOGIN
-                CustomTextField(hint: "+1 6505551234", text: $loginModel.mobileNo)
-                    .disabled(loginModel.showOTPField)
-                    .opacity(loginModel.showOTPField ? 0.4 : 1)
-                    .overlay(alignment: .trailing, content: {
-                        Button("Change") {
-                            withAnimation(.easeInOut) {
-                                loginModel.showOTPField = false
-                                loginModel.otpCode = ""
-                                loginModel.CLIENT_CODE = ""
-                            }
-                        }
-                        .font(.caption)
-                        .foregroundColor(.indigo)
-                        .opacity(loginModel.showOTPField ? 1 : 0)
-                        .padding(.trailing, 15)
-                    })
-                    .padding(.top, 50)
-                
-                CustomTextField(hint: "OTP Code", text: $loginModel.otpCode)
-                    .disabled(!loginModel.showOTPField)
-                    .opacity(!loginModel.showOTPField ? 0.4 : 1)
-                    .padding(.top, 20)
-
-                Button(action: loginModel.showOTPField ? loginModel.verifyOTPCode
-                       : loginModel.getOTPCode) {
-                    HStack(spacing: 15) {
-                        Text(loginModel.showOTPField ? "Verify Code" : "Get Code")
-                            .fontWeight(.semibold)
-                            .contentTransition(.identity)
-                            
-                            Image(systemName: "line.diagonal.arrow")
-                                .font(.title3)
-                                .rotationEffect(.init(degrees: 45))
-                        }
-                        .foregroundColor(.black)
-                        .padding(.horizontal, 25)
-                        .padding(.vertical)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(.black.opacity(0.05))
-                        }
-                    }
-                    .padding(.top, 30)
-                    
                 
                 Button("Reset Password?", action:resetPassword)
                     .font(.callout)
@@ -118,32 +73,44 @@ struct LoginView: View {
                         .fillView(.oxfordBlue)
                 }
                 .padding(.top,10)
-            
-            //MARK: Apple Sign In
-            SignInWithAppleButton { (request) in
-                loginData.nonce = randomNonceString()
-                request.requestedScopes = [.email, .fullName]
-                request.nonce = sha256(loginData.nonce)
-            } onCompletion: { (result) in
-                switch result {
-                case .success(let user):
-                    print("Success")
-                    guard let credential = user.credential as?
-                            ASAuthorizationAppleIDCredential else {
-                        print("error with firebase")
-                        return
+                
+                VStack(spacing: 10) {
+                    VStack(spacing: 12) {
+                        //MARK: Apple Sign In
+                        SignInWithAppleButton { (request) in
+                            loginData.nonce = randomNonceString()
+                            request.requestedScopes = [.email, .fullName]
+                            request.nonce = sha256(loginData.nonce)
+                        } onCompletion: { (result) in
+                            switch result {
+                            case .success(let user):
+                                print("Success")
+                                guard let credential = user.credential as?
+                                        ASAuthorizationAppleIDCredential else {
+                                    print("error with firebase")
+                                    return
+                                }
+                                loginData.authenticate(credential: credential)
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+                        }
+                        .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
+                        .frame(height:55)
+                        .clipShape(Capsule())
+                        .padding(.horizontal, 40)
+                        
+                        Button("Login with Phone") {
+                            phoneLogin.toggle()
+                        }
+                        .fontWeight(.bold)
+                        .foregroundColor(.cgBlue)
+                        .fullScreenCover(isPresented: $phoneLogin){
+                            PhoneLoginView()
+                        }
                     }
-                    loginData.authenticate(credential: credential)
-                case .failure(let error):
-                    print(error.localizedDescription)
                 }
             }
-            .signInWithAppleButtonStyle(.white)
-            .frame(height:55)
-            .clipShape(Capsule())
-            .padding(.horizontal, 40)
-            .offset(y: -70)
-        }
             
             //MARK: Register Button
             HStack {
@@ -158,7 +125,6 @@ struct LoginView: View {
             .font(.callout)
             .vAlign(.bottom)
         }
-//        .alert(loginModel.errorMessage, isPresented: $loginModel.showError) {
         .vAlign(.top)
         .padding(15)
         .overlay(content: {
