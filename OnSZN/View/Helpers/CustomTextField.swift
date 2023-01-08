@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomTextField: View {
     var hint: String
     @Binding var text: String
+    @Environment(\.colorScheme) private var colorScheme
     
     @FocusState var isEnabled: Bool
     var contentType: UITextContentType = .telephoneNumber
@@ -19,7 +20,10 @@ struct CustomTextField: View {
                 .keyboardType(.numberPad)
                 .textContentType(contentType)
                 .focused($isEnabled)
-            
+                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                .textContentType(.telephoneNumber)
+                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                .padding(.top, 25)
             ZStack(alignment: .leading) {
                 Rectangle()
                     .fill(.black.opacity(0.2))
