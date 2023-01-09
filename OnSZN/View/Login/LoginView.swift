@@ -199,12 +199,12 @@ struct LoginView: View {
             }
         }
     }
-    
+     
     // MARK: If User if Found then Fetching User Data From Firestore
     func fetchUser()async throws {
         guard let userID = Auth.auth().currentUser?.uid else {return}
         let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
-        //MARK: UI Upodating Must be Run on Main Thread
+        //MARK: UI Updating Must be Run on Main Thread
         await MainActor.run(body: {
             //Setting UserDefaults data and Change App's Auth Status
             userUID = userID
@@ -239,7 +239,7 @@ struct LoginView: View {
         HStack{
             Group {
                 if isGoogle {
-                    Image(systemName: "google")
+                    Image("google")
                         .resizable()
                         .renderingMode(.template)
                 } else {

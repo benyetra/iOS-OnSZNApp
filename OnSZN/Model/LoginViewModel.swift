@@ -15,16 +15,12 @@ import GoogleSignInSwift
 class LoginViewModel: ObservableObject {
     @Published var mobileNo: String = ""
     @Published var otpCode: String = ""
-    
     @Published var CLIENT_CODE: String = ""
     @Published var showOTPField: Bool = false
-    
     //MARK: Error Properties
     @Published var showError: Bool = false
     @Published var errorMessage: String = ""
-    
     @Published var nonce: String = ""
-    
     @AppStorage("log_status") var logStatus: Bool = false
     
     func authenticate(credential: ASAuthorizationAppleIDCredential) {
@@ -32,14 +28,11 @@ class LoginViewModel: ObservableObject {
             print("error with firebase")
             return
         }
-        
         guard let tokenString = String(data: token, encoding: .utf8) else {
             print("error with token")
             return
         }
-        
         let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokenString, rawNonce: nonce)
-        
         Auth.auth().signIn(with: firebaseCredential) { (result, err) in
             if let error = err {
                 print(error.localizedDescription)
@@ -156,7 +149,6 @@ class LoginViewModel: ObservableObject {
                 }
             }
         }
-        
         return result
     }
 }
