@@ -10,6 +10,8 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import AuthenticationServices
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct LoginView: View {
     @Environment(\.colorScheme) private var colorScheme
@@ -83,47 +85,77 @@ struct LoginView: View {
                 
                 VStack(spacing: 10) {
                     VStack(spacing: 12) {
-                        //MARK: Apple Sign In
-                        SignInWithAppleButton { (request) in
-                            loginData.nonce = randomNonceString()
-                            request.requestedScopes = [.email, .fullName]
-                            request.nonce = sha256(loginData.nonce)
-                        } onCompletion: { (result) in
-                            switch result {
-                            case .success(let user):
-                                print("Success")
-                                guard let credential = user.credential as?
-                                        ASAuthorizationAppleIDCredential else {
-                                    print("error with firebase")
-                                    return
+                        HStack(spacing: 8) {
+                            CustomButton()
+                                .overlay {
+                                    //MARK: Apple Sign In
+                                    SignInWithAppleButton { (request) in
+                                        loginData.nonce = LoginViewModel.randomNonceString()
+                                        request.requestedScopes = [.email, .fullName]
+                                        request.nonce = LoginViewModel.sha256(loginData.nonce)
+                                    } onCompletion: { (result) in
+                                        switch result {
+                                        case .success(let user):
+                                            print("Success")
+                                            guard let credential = user.credential as?
+                                                    ASAuthorizationAppleIDCredential else {
+                                                print("error with firebase")
+                                                return
+                                            }
+                                            loginData.authenticate(credential: credential)
+                                        case .failure(let error):
+                                            print(error.localizedDescription)
+                                        }
+                                    }
+                                    .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
+                                    .frame(height:55)
+                                    .blendMode(.overlay)
                                 }
-                                loginData.authenticate(credential: credential)
-                            case .failure(let error):
-                                print(error.localizedDescription)
-                            }
+                                .clipped()
+                            
+                            //MARK: Google Sign In Button
+                             CustomButton(isGoogle: true)
+                                .overlay {
+                                    if let clientID = FirebaseApp.app()?.options.clientID {
+                                        GoogleSignInButton {
+                                            GIDSignIn.sharedInstance.signIn(with: .init(clientID: clientID), presenting: UIApplication.shared.rootController()) { user, error in
+                                                if let error = error {
+                                                    print(error.localizedDescription)
+                                                    return
+                                                }
+                                                if let user {
+                                                    loginModel.logGoogleUser(user: user)
+                                                }
+                                            }
+                                        }
+                                        .blendMode(.overlay)
+                                    }
+                                }
+                                .clipped()
                         }
-                        .signInWithAppleButtonStyle(colorScheme == .light ? .black : .white)
-                        .frame(height:55)
-                        .clipShape(Capsule())
-                        .padding(.horizontal, 40)
-                        Button {
-                            phoneLogin.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "phone.fill")
-                                Text("Sign In With Phone")
-                            }
+                        .padding(.leading, -60)
+                        .frame(maxWidth: .infinity)
+                    }
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 15)
+                    
+                    Button {
+                        phoneLogin.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "phone.fill")
+                            Text("Sign In With Phone")
                         }
-                        .fontWeight(.bold)
-                        .padding(.vertical)
-                        .frame(height:55)
-                        .padding(.horizontal, 40)
-                        .font(.title3)
-                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.oxfordBlue)
-                        .background(colorScheme == .light ? Color.platinum : Color.platinum, in: Capsule())
-                        .fullScreenCover(isPresented: $phoneLogin){
-                            PhoneLoginView()
-                        }
+                    }
+                    .fontWeight(.bold)
+                    .padding(.vertical)
+                    .frame(height:55)
+                    .padding(.horizontal, 40)
+                    .font(.title3)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.oxfordBlue)
+                    .background(colorScheme == .light ? Color.platinum : Color.platinum, in: Capsule())
+                    .fullScreenCover(isPresented: $phoneLogin){
+                        PhoneLoginView()
                     }
                 }
             }
@@ -153,7 +185,6 @@ struct LoginView: View {
         //MARK: Displaying Alert
         .alert(errorMessage, isPresented: $showError, actions: {})
     }
-    
     
     func loginUser() {
         isLoading = true
@@ -201,6 +232,35 @@ struct LoginView: View {
             showError.toggle()
             isLoading = false
         })
+    }
+    
+    @ViewBuilder
+    func CustomButton(isGoogle: Bool = false) -> some View {
+        HStack{
+            Group {
+                if isGoogle {
+                    Image(systemName: "google")
+                        .resizable()
+                        .renderingMode(.template)
+                } else {
+                    Image(systemName: "applelogo")
+                        .resizable()
+                }
+            }
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 25, height: 25)
+            .frame(height: 45)
+            
+            Text("\(isGoogle ? "Google" : "Apple") Sign In")
+                .font(.callout)
+                .lineLimit(1)
+        }
+        .foregroundColor(.white)
+        .padding(.horizontal, 15)
+        .background{
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(.black)
+        }
     }
 }
 
