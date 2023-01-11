@@ -41,6 +41,9 @@
 		35873D6E296A3B5200E1C128 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D6D296A3B5200E1C128 /* CustomTextField.swift */; };
 		35873D70296A3EE500E1C128 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D6F296A3EE500E1C128 /* LoginViewModel.swift */; };
 		35873D72296A610400E1C128 /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35873D71296A610400E1C128 /* PhoneLoginView.swift */; };
+		35B7DFFC296EEE90004D62A4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 35B7DFFB296EEE90004D62A4 /* Lottie */; };
+		35B7DFFF296EEED9004D62A4 /* OnboardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7DFFE296EEED9004D62A4 /* OnboardingItem.swift */; };
+		35B7E001296EEFF8004D62A4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7E000296EEFF8004D62A4 /* OnboardingScreen.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 		35EA4F8929662146002C6936 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8829662146002C6936 /* TeamView.swift */; };
@@ -100,6 +103,8 @@
 		35873D6D296A3B5200E1C128 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		35873D6F296A3EE500E1C128 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		35873D71296A610400E1C128 /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
+		35B7DFFE296EEED9004D62A4 /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
+		35B7E000296EEFF8004D62A4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		35EA4F8829662146002C6936 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 				3552B2C8295C920900189651 /* FirebaseFirestore in Frameworks */,
 				3552B2CA295C920900189651 /* FirebaseFirestoreSwift in Frameworks */,
 				35873D69296A371700E1C128 /* GoogleSignIn in Frameworks */,
+				35B7DFFC296EEE90004D62A4 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +214,8 @@
 		3552B2C2295C734100189651 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				35EA2F50295DCB4100CEF35E /* Post View */,
+				35B7DFFD296EEEAE004D62A4 /* OnboardingView */,
+				35EA2F50295DCB4100CEF35E /* PostView */,
 				35EA2F51295DCB6300CEF35E /* ProfileVIew */,
 				35EA4F8129661E9F002C6936 /* TeamsView */,
 				3552DCB1295CA9F90074DCCD /* Helpers */,
@@ -269,14 +276,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		35EA2F50295DCB4100CEF35E /* Post View */ = {
+		35B7DFFD296EEEAE004D62A4 /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				35B7DFFE296EEED9004D62A4 /* OnboardingItem.swift */,
+				35B7E000296EEFF8004D62A4 /* OnboardingScreen.swift */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
+		35EA2F50295DCB4100CEF35E /* PostView */ = {
 			isa = PBXGroup;
 			children = (
 				355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */,
 				355EB4E2295CE8D900F274D7 /* PostsView.swift */,
 				355EB4E6295CFAB500F274D7 /* PostCardView.swift */,
 			);
-			path = "Post View";
+			path = PostView;
 			sourceTree = "<group>";
 		};
 		35EA2F51295DCB6300CEF35E /* ProfileVIew */ = {
@@ -322,6 +338,7 @@
 				355EB4DC295CB73B00F274D7 /* SDWebImageSwiftUI */,
 				35873D68296A371700E1C128 /* GoogleSignIn */,
 				35873D6A296A371700E1C128 /* GoogleSignInSwift */,
+				35B7DFFB296EEE90004D62A4 /* Lottie */,
 			);
 			productName = OnSZN;
 			productReference = 3552B278295C6E2A00189651 /* OnSZN.app */;
@@ -399,6 +416,7 @@
 				3552B2AF295C70FC00189651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				355EB4DB295CB73B00F274D7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				35873D67296A371700E1C128 /* XCRemoteSwiftPackageReference "googlesignin-ios" */,
+				35B7DFFA296EEE90004D62A4 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 3552B279295C6E2A00189651 /* Products */;
 			projectDirPath = "";
@@ -453,6 +471,7 @@
 				35EA4F8929662146002C6936 /* TeamView.swift in Sources */,
 				355EB4DF295CBC6500F274D7 /* CreateNewPost.swift in Sources */,
 				35873D70296A3EE500E1C128 /* LoginViewModel.swift in Sources */,
+				35B7E001296EEFF8004D62A4 /* OnboardingScreen.swift in Sources */,
 				355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */,
 				35873D6E296A3B5200E1C128 /* CustomTextField.swift in Sources */,
 				355EB4E1295CBCA900F274D7 /* Post.swift in Sources */,
@@ -469,6 +488,7 @@
 				3552DCB7295CADA10074DCCD /* ProfileView.swift in Sources */,
 				35873D72296A610400E1C128 /* PhoneLoginView.swift in Sources */,
 				35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */,
+				35B7DFFF296EEED9004D62A4 /* OnboardingItem.swift in Sources */,
 				355EB4DA295CB45200F274D7 /* ReusableProfileContent.swift in Sources */,
 				3552B27E295C6E2A00189651 /* Persistence.swift in Sources */,
 			);
@@ -862,6 +882,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		35B7DFFA296EEE90004D62A4 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -899,6 +927,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 35873D67296A371700E1C128 /* XCRemoteSwiftPackageReference "googlesignin-ios" */;
 			productName = GoogleSignInSwift;
+		};
+		35B7DFFB296EEE90004D62A4 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35B7DFFA296EEE90004D62A4 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 
