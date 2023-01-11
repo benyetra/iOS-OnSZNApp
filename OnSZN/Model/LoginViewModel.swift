@@ -78,13 +78,13 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func logGoogleUser(user: GIDGoogleUser) {
+    func logGoogleUser(user: GIDSignInResult) {
         Task {
             do {
-                guard let idToken = user.authentication.idToken else {return}
-                let accessToken = user.authentication.accessToken
+                guard let idToken = user.user.idToken else {return}
+                let accessToken = user.user.accessToken
                 
-                let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
                 
                 try await Auth.auth().signIn(with:credential)
                 print("Success Google!")

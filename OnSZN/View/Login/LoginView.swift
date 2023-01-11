@@ -90,9 +90,9 @@ struct LoginView: View {
                                 .overlay {
                                     //MARK: Apple Sign In
                                     SignInWithAppleButton { (request) in
-                                        loginData.nonce = LoginViewModel.randomNonceString()
+                                        loginData.nonce = loginModel.randomNonceString()
                                         request.requestedScopes = [.email, .fullName]
-                                        request.nonce = LoginViewModel.sha256(loginData.nonce)
+                                        request.nonce = loginModel.sha256(loginData.nonce)
                                     } onCompletion: { (result) in
                                         switch result {
                                         case .success(let user):
@@ -112,66 +112,54 @@ struct LoginView: View {
                                     .blendMode(.overlay)
                                 }
                                 .clipped()
-                            
-                            //MARK: Google Sign In Button
-                             CustomButton(isGoogle: true)
-                                .overlay {
-                                    if let clientID = FirebaseApp.app()?.options.clientID {
-                                        GoogleSignInButton {
-                                            GIDSignIn.sharedInstance.signIn(with: .init(clientID: clientID), presenting: UIApplication.shared.rootController()) { user, error in
-                                                if let error = error {
-                                                    print(error.localizedDescription)
-                                                    return
-                                                }
-                                                if let user {
-                                                    loginModel.logGoogleUser(user: user)
-                                                }
-                                            }
-                                        }
-                                        .blendMode(.overlay)
+                            Button {
+                                phoneLogin.toggle()
+                            } label: {
+                                HStack {
+                                    Group {
+                                        Image(systemName: "phone.fill")
+                                            .resizable()
+                                            .renderingMode(.template)
                                     }
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 25, height: 25)
+                                    .frame(height: 45)
+                                    Text("Sign In")
+                                        .font(.callout)
+                                        .layoutPriority(1)
+                                        .lineLimit(1)
                                 }
-                                .clipped()
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .buttonStyle(PlainButtonStyle())
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 15)
+                                .background{
+                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                        .fill(.black)
+                                }
+                                .fullScreenCover(isPresented: $phoneLogin){
+                                    PhoneLoginView()
+                                }
+                            }
                         }
-                        .padding(.leading, -60)
-                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 15)
                     }
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 15)
-                    
-                    Button {
-                        phoneLogin.toggle()
-                    } label: {
-                        HStack {
-                            Image(systemName: "phone.fill")
-                            Text("Sign In With Phone")
-                        }
+                }
+                
+                //MARK: Register Button
+                HStack {
+                    Text("Don't have an account?")
+                        .foregroundColor(.gray)
+                    Button("Register Now") {
+                        createAccount.toggle()
                     }
                     .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(height:55)
-                    .padding(.horizontal, 40)
-                    .font(.title3)
-                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.oxfordBlue)
-                    .background(colorScheme == .light ? Color.platinum : Color.platinum, in: Capsule())
-                    .fullScreenCover(isPresented: $phoneLogin){
-                        PhoneLoginView()
-                    }
+                    .foregroundColor(.cgBlue)
                 }
+                .font(.callout)
+                .vAlign(.bottom)
             }
-            
-            //MARK: Register Button
-            HStack {
-                Text("Don't have an account?")
-                    .foregroundColor(.gray)
-                Button("Register Now") {
-                    createAccount.toggle()
-                }
-                .fontWeight(.bold)
-                .foregroundColor(.cgBlue)
-            }
-            .font(.callout)
-            .vAlign(.bottom)
         }
         .vAlign(.top)
         .padding(15)
@@ -235,11 +223,11 @@ struct LoginView: View {
     }
     
     @ViewBuilder
-    func CustomButton(isGoogle: Bool = false) -> some View {
+    func CustomButton(isPhone: Bool = false) -> some View {
         HStack{
             Group {
-                if isGoogle {
-                    Image("google")
+                if isPhone {
+                    Image(systemName: "phone.fill")
                         .resizable()
                         .renderingMode(.template)
                 } else {
@@ -251,10 +239,11 @@ struct LoginView: View {
             .frame(width: 25, height: 25)
             .frame(height: 45)
             
-            Text("\(isGoogle ? "Google" : "Apple") Sign In")
+            Text("Sign In")
                 .font(.callout)
                 .lineLimit(1)
         }
+        .frame(minWidth: 0, maxWidth: .infinity)
         .foregroundColor(.white)
         .padding(.horizontal, 15)
         .background{

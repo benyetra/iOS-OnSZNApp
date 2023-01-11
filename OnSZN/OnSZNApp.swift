@@ -11,9 +11,6 @@ import Firebase
 @main
 struct OnSZNApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-//    init() {
-//        FirebaseApp.configure()
-//    }
     let persistenceController = PersistenceController.shared 
     
     var body: some Scene {
@@ -36,4 +33,5 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     -> UIBackgroundFetchResult {
         return .noData
     }
+
 
