@@ -131,7 +131,7 @@ struct RegisterView: View {
                     .padding(-10)
                 
                 Spacer(minLength: 5)
-                
+                    .padding(15)
                 TextField("Username", text:$userName)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.nickname)

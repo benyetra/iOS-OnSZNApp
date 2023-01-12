@@ -226,7 +226,8 @@ struct EditProfileView: View {
                                 "username": self.userName,
                                 "userBio": self.userBio,
                                 "userBioLink": self.userBioLink,
-                                "userProfileURL": url?.absoluteString
+                                "userProfileURL": url?.absoluteString,
+                                "favoriteTeam": self.storedSelectedTeam
                             ]) { (error) in
                                 if let error = error {
                                     // Show error message
@@ -266,6 +267,7 @@ struct EditProfileView: View {
                 self.userBioLink = document["userBioLink"] as? String ?? ""
                 self.userProfilePicData = document["userProfileURL"] as? Data
                 self.userProfileURL = document["userProfileURL"] as? URL
+                self.storedSelectedTeam = document["favoriteTeam"] as? String ?? ""
             } else {
                 print("Error getting user data: \(error)")
             }
