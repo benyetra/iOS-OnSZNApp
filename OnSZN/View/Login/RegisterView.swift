@@ -21,6 +21,7 @@ struct RegisterView: View {
     @State var userBio: String = ""
     @State var userBioLink: String = ""
     @State var userProfilePicData: Data?
+    @State var favoriteTeam: Bool = false
     //MARK: View Properties
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) private var colorScheme
@@ -29,43 +30,47 @@ struct RegisterView: View {
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
+    @State private var selection: String?
     // MARK: User Defaults
     @AppStorage("log_status") var logStatus: Bool = false
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
+    @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
     var body:some View {
-        VStack(spacing:10) {
-            Text("Lets register your \naccount")
-                .font(.largeTitle.bold())
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                .hAlign(.leading)
-            
-            Text("Welcome to the league!")
-                .font(.title3)
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                .hAlign(.leading)
-            
-            //MARK: Optimize Size
-            ViewThatFits {
-                ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing:10) {
+                Text("Lets register your \naccount")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .hAlign(.leading)
+                
+                Text("Welcome to the league!")
+                    .font(.title3)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .hAlign(.leading)
+                
+                //MARK: Optimize Size
+                ViewThatFits {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        HelperView()
+                    }
                     HelperView()
                 }
-                HelperView()
-            }
-            
-            //MARK: Register Button
-            HStack {
-                Text("Already have an account?")
-                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                Button("Login Now") {
-                    dismiss()
+                
+                //MARK: Register Button
+                HStack {
+                    Text("Already have an account?")
+                        .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    Button("Login Now") {
+                        dismiss()
+                    }
+                    .fontWeight(.bold)
+                    .foregroundColor(.cgBlue)
                 }
-                .fontWeight(.bold)
-                .foregroundColor(.cgBlue)
+                .font(.callout)
+                .vAlign(.bottom)
             }
-            .font(.callout)
-            .vAlign(.bottom)
         }
         .vAlign(.top)
         .padding(15)
@@ -92,82 +97,96 @@ struct RegisterView: View {
     @ViewBuilder
     func HelperView() -> some View {
         VStack(spacing:12) {
-            ZStack {
-                if let userProfilePicData, let image = UIImage(data: userProfilePicData) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } else {
-                    Image("NullProfile")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
+            VStack {
+                ZStack {
+                    if let userProfilePicData, let image = UIImage(data: userProfilePicData) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } else {
+                        Image("NullProfile")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
+                    }
                 }
-            }
-            .frame(width: 85, height: 85)
-            .clipShape(Circle())
-            .contentShape(Circle())
-            .onTapGesture {
-                showImagePicker.toggle()
-            }
-            .padding(.top,25)
-            
-            Text("Edit Profile Picture")
-                .font(.title3)
-                .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
+                .frame(width: 85, height: 85)
+                .clipShape(Circle())
+                .contentShape(Circle())
+                .onTapGesture {
+                    showImagePicker.toggle()
+                }
+                .padding(.top,25)
+                
+                Text("Edit Profile Picture")
+                    .font(.title3)
+                    .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
+                    .hAlign(.center)
+                
+                Text("Tap on the image to change it")
+                    .font(.subheadline)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    .hAlign(.center)
+                    .padding(-10)
+                
+                Spacer(minLength: 5)
+                    .padding(15)
+                TextField("Username", text:$userName)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    .textContentType(.nickname)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                
+                TextField("Email", text:$emailID)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    .textContentType(.emailAddress)
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                
+                SecureField("Password", text:$password)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    .textContentType(.password)
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                
+                TextField("About You", text:$userBio, axis: .vertical)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    .frame(minHeight: 100, alignment: .top)
+                    .textContentType(.nickname)
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                
+                TextField("Bio Link (Optional)", text:$userBioLink)
+                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    .textContentType(.URL)
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
+                    .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                
+                Button("Select Fandom") {
+                    favoriteTeam.toggle()
+                }.sheet(isPresented: $favoriteTeam) {
+                    FavoriteTeamView(selection: $selection)
+                    Text("Swipe Down to Dismiss")
+                        .font(.subheadline)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                }
+                .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                 .hAlign(.center)
+                .fillView(.oxfordBlue)
+            }
             
-            Text("Tap on the image to change it")
-                .font(.subheadline)
-                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .hAlign(.center)
-                .padding(-10)
-            
-            Spacer(minLength: 5)
-            
-            TextField("Username", text:$userName)
-                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .textContentType(.nickname)
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
-                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-            
-            TextField("Email", text:$emailID)
-                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .textContentType(.emailAddress)
-                .autocorrectionDisabled()
-                .autocapitalization(.none)
-                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-
-            SecureField("Password", text:$password)
-                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .textContentType(.password)
-                .autocorrectionDisabled()
-                .autocapitalization(.none)
-                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-
-            TextField("About You", text:$userBio, axis: .vertical)
-                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .frame(minHeight: 100, alignment: .top)
-                .textContentType(.nickname)
-                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-
-            TextField("Bio Link (Optional)", text:$userBioLink)
-                .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .textContentType(.URL)
-                .autocorrectionDisabled()
-                .autocapitalization(.none)
-                .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-
             Button(action: registerUser) {
-                //MARK: Login Button
+                //MARK: Register Button
                 Text("Sign up")
                     .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                     .hAlign(.center)
                     .fillView(.oxfordBlue)
             }
-            .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
+            .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil || selection == "")
             .padding(.top,10)
         }
     }
@@ -187,7 +206,7 @@ struct RegisterView: View {
                 //Step 3: Downloading Photo URL
                 let downloadURL = try await storageRef.downloadURL()
                 //Step 4: Creating a User Firestore Object
-                let user = User(username: userName, userBio: userBio, userBioLink: userBioLink, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                let user = User(username: userName, userBio: userBio, userBioLink: userBioLink, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, favoriteTeam: storedSelectedTeam)
                 //Step 5: Saving User DOc into Firestore Databaase
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion: {
                     error in

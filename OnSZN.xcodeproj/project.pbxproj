@@ -36,6 +36,7 @@
 		355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E6295CFAB500F274D7 /* PostCardView.swift */; };
 		356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FE86A295E629A00FD782B /* EditProfileView.swift */; };
 		357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */; };
+		35B7E003296F43F7004D62A4 /* FavoriteTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7E002296F43F7004D62A4 /* FavoriteTeamView.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
 		35EA4F8929662146002C6936 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4F8829662146002C6936 /* TeamView.swift */; };
@@ -91,6 +92,8 @@
 		355EB4E6295CFAB500F274D7 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		356FE86A295E629A00FD782B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTeamPostsView.swift; sourceTree = "<group>"; };
+		35B7E002296F43F7004D62A4 /* FavoriteTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTeamView.swift; sourceTree = "<group>"; };
+		35B7E006296FBCB7004D62A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		35EA2F54295E04D600CEF35E /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		35EA4F8829662146002C6936 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		3552B27A295C6E2A00189651 /* OnSZN */ = {
 			isa = PBXGroup;
 			children = (
+				35B7E006296FBCB7004D62A4 /* Info.plist */,
 				3552B2C3295C734600189651 /* Model */,
 				3552B2C2295C734100189651 /* View */,
 				3552B27D295C6E2A00189651 /* Persistence.swift */,
@@ -270,6 +274,7 @@
 				3552DCB6295CADA10074DCCD /* ProfileView.swift */,
 				355EB4D9295CB45200F274D7 /* ReusableProfileContent.swift */,
 				356FE86A295E629A00FD782B /* EditProfileView.swift */,
+				35B7E002296F43F7004D62A4 /* FavoriteTeamView.swift */,
 			);
 			path = ProfileVIew;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				3552B27C295C6E2A00189651 /* OnSZNApp.swift in Sources */,
 				35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */,
 				357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */,
+				35B7E003296F43F7004D62A4 /* FavoriteTeamView.swift in Sources */,
 				3552DCB5295CAAA80074DCCD /* MainView.swift in Sources */,
 				35EA4F8929662146002C6936 /* TeamView.swift in Sources */,
 				355EB4DF295CBC6500F274D7 /* CreateNewPost.swift in Sources */,
@@ -607,6 +613,7 @@
 				DEVELOPMENT_TEAM = 87A6J7UY87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OnSZN/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OnSZN;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -615,6 +622,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -624,11 +632,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = byetz.OnSZN;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.byetz.OnSZN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byetz.OnSZN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -647,6 +654,7 @@
 				DEVELOPMENT_TEAM = 87A6J7UY87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OnSZN/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OnSZN;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -655,6 +663,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -664,11 +673,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = byetz.OnSZN;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.byetz.OnSZN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byetz.OnSZN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

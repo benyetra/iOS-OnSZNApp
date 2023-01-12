@@ -19,6 +19,8 @@ struct ProfileView: View {
     @State var showError: Bool = false
     @State var isLoading: Bool = false
     @State var editAccount: Bool = false
+    @State var favoriteTeam: Bool = false
+    @State private var selection: String?
     @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         NavigationStack {
@@ -40,10 +42,11 @@ struct ProfileView: View {
                     Menu {
                         //MARK: Three Action's
                         //1. Edit Profile
-                        //2. Logout
-                        //3. Delete Account
-                        Button("Edit Profile") { editAccount.toggle()
-                        }
+                        //2. Select Team
+                        //3. Logout
+                        //4. Delete Account
+                        Button("Edit Profile") { editAccount.toggle()}
+                        Button("Select Favorite Team") { favoriteTeam.toggle()}
                         Button("Logout", action: logOutUser)
                         Button("Delete Account", role: .destructive, action: deleteAccount)
                     } label: {
@@ -70,6 +73,9 @@ struct ProfileView: View {
         //MARK: Register View via Sheets
         .fullScreenCover(isPresented: $editAccount){
             EditProfileView()
+        }
+        .sheet(isPresented: $favoriteTeam){
+            FavoriteTeamView(selection: $selection)
         }
     }
     
