@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "nbaicon.png",
+      "filename" : "NBA.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "nbaicon-1.png",
+      "filename" : "NBA-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "nbaicon-2.png",
+      "filename" : "NBA-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -206,7 +206,7 @@ struct Teams: Hashable {
 }
 
 let teams = [
-        Teams(name: "NBA", icon: "nbaicon"),
+        Teams(name: "NBA", icon: "NBA"),
         Teams(name: "Toronto Raptors", icon: "Raptors"),
         Teams(name: "Boston Celtics", icon: "Celtics"),
         Teams(name: "Brooklyn Nets", icon: "Nets"),

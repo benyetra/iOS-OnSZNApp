@@ -22,6 +22,8 @@ struct EditProfileView: View {
     @State var userBioLink: String = ""
     @State var userProfilePicData: Data?
     @State var userProfileURL: URL?
+    @State var favoriteTeam: Bool = false
+
     //MARK: View Properties
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) private var colorScheme
@@ -30,11 +32,15 @@ struct EditProfileView: View {
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
+    @State private var selection: String?
+
     // MARK: User Defaults
     @AppStorage("log_status") var logStatus: Bool = false
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
+    @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
+
     var body: some View {
         VStack(spacing:10) {
             Text("Edit your profile")
@@ -155,6 +161,18 @@ struct EditProfileView: View {
                 .autocapitalization(.none)
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
                 
+            Button("Select Fandom") {
+                favoriteTeam.toggle()
+            }.sheet(isPresented: $favoriteTeam) {
+                FavoriteTeamView(selection: $selection)
+                Text("Swipe Down to Dismiss")
+                    .font(.subheadline)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+            }
+            .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
+            .hAlign(.center)
+            .fillView(.oxfordBlue)
+            
                 Button(action: {
                     updateUserInfo { (error) in
                         if let error = error {

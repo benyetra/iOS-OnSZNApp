@@ -12,25 +12,38 @@ struct ReusableProfileContent: View {
     var user: User
     @State private var fetchedPosts: [Post] = []
     @State private var showLightbox = false
+    @State private var selection: String?
+    @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
     @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack{
                 HStack(spacing: 12) {
-                    WebImage(url: user.userProfileURL).placeholder {
-                        // MARK: Placeholder Image
-                        Image("NullProfile")
-                            .resizable()
+                    VStack {
+                        WebImage(url: user.userProfileURL).placeholder {
+                            // MARK: Placeholder Image
+                            Image("NullProfile")
+                                .resizable()
+                        }
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
+                        .overlay(
+                            Image("\(storedSelectedTeam)")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(colorScheme == .light ? Color.platinum : Color.platinum, lineWidth: 1))
+                                .position(x: 85, y: 85)
+                        )
+                        .onTapGesture {
+                            self.showLightbox = true
+                        }
                     }
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
-                    .onTapGesture {
-                        self.showLightbox = true
-                    }
-                                        
+                     
                     VStack(alignment: .leading, spacing: 6) {
                         Text("@\(user.username)")
                             .font(.title3)
@@ -60,6 +73,7 @@ struct ReusableProfileContent: View {
                     }
                     .hAlign(.leading)
                 }
+                
                 Text ("Post's")
                     .font(.title2)
                     .fontWeight(.semibold)
