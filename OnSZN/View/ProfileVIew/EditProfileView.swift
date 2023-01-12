@@ -39,7 +39,7 @@ struct EditProfileView: View {
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
-    @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
+    @AppStorage("selected_fav_team") var storedSelectedFavoriteTeam: String = "NBA"
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -227,7 +227,7 @@ struct EditProfileView: View {
                                 "userBio": self.userBio,
                                 "userBioLink": self.userBioLink,
                                 "userProfileURL": url?.absoluteString,
-                                "favoriteTeam": self.storedSelectedTeam
+                                "favoriteTeam": self.storedSelectedFavoriteTeam
                             ]) { (error) in
                                 if let error = error {
                                     // Show error message
@@ -267,7 +267,7 @@ struct EditProfileView: View {
                 self.userBioLink = document["userBioLink"] as? String ?? ""
                 self.userProfilePicData = document["userProfileURL"] as? Data
                 self.userProfileURL = document["userProfileURL"] as? URL
-                self.storedSelectedTeam = document["favoriteTeam"] as? String ?? ""
+                self.storedSelectedFavoriteTeam = document["favoriteTeam"] as? String ?? ""
             } else {
                 print("Error getting user data: \(error)")
             }

@@ -13,7 +13,7 @@ struct ReusableProfileContent: View {
     @State private var fetchedPosts: [Post] = []
     @State private var showLightbox = false
     @State private var selection: String?
-    @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
+    @AppStorage("selected_fav_team") var storedSelectedFavoriteTeam: String = "NBA"
     @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -31,7 +31,7 @@ struct ReusableProfileContent: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
                         .overlay(
-                            Image("\(storedSelectedTeam)")
+                            Image("\(storedSelectedFavoriteTeam)")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30)
