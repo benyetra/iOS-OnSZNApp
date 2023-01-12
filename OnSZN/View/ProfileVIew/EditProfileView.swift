@@ -190,7 +190,7 @@ struct EditProfileView: View {
                         .fillView(.oxfordBlue)
                         .hAlign(.center)
                 }
-                .disableWithOpacity(userName == "" || userBio == "" || emailID == "")
+                .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || selection == "")
                 .padding(.top,10)
             }
         .onAppear {
@@ -223,7 +223,7 @@ struct EditProfileView: View {
                             // Update user's data in Firebase Firestore
                             db.collection("Users").document(uid).updateData([
                                 "userEmail": self.emailID,
-                                "username": self.userName,
+                                "username": self.userName.lowercased(),
                                 "userBio": self.userBio,
                                 "userBioLink": self.userBioLink,
                                 "userProfileURL": url?.absoluteString,
@@ -236,7 +236,7 @@ struct EditProfileView: View {
                                     completion(error)
                                 } else {
                                     // Update user's data in UserDefaults
-                                    self.userNameStored = self.userName
+                                    self.userNameStored = self.userName.lowercased()
                                     self.profileURL = URL(string: self.userBioLink)
                                     self.logStatus = true
                                     // Dismiss view

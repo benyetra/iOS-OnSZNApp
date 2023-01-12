@@ -166,11 +166,11 @@ struct CreateNewPost: View {
                     let _ = try await storageRef.putDataAsync(postImageData)
                     let downloadURL = try await storageRef.downloadURL()
                     /// Step 3: Create post object with image ID and URL
-                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic: storedSelectedTeam)
+                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceID: imageReferenceID, userName: userName.lowercased(), userUID: userUID, userProfileURL: profileURL, teamTopic: storedSelectedTeam)
                     try await createDocumentAtFirebase(post)
                 } else {
                     ///Step 2:  Directly Post Text Data to Firebase (Since there is no images present)
-                    let post = Post(text: postText, userName: userName, userUID: userUID, userProfileURL: profileURL, teamTopic:storedSelectedTeam)
+                    let post = Post(text: postText, userName: userName.lowercased(), userUID: userUID, userProfileURL: profileURL, teamTopic:storedSelectedTeam)
                     try await createDocumentAtFirebase(post)
                 }
             } catch {

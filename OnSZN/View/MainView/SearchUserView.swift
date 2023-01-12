@@ -19,7 +19,7 @@ struct SearchUserView: View {
                 NavigationLink {
                     ReusableProfileContent(user: user)
                 } label: {
-                    Text("@\(user.username)")
+                    Text(user.username)
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         .font(.callout)
                         .hAlign(.leading)
@@ -43,7 +43,8 @@ struct SearchUserView: View {
     
     func searchUsers()async {
         do {
-            let documents = try await Firestore.firestore().collection("Users").whereField("username", isGreaterThanOrEqualTo: searchText)
+            let documents = try await Firestore.firestore().collection("Users")
+                .whereField("username", isGreaterThanOrEqualTo: searchText)
                 .whereField("username", isLessThanOrEqualTo: "\(searchText)\u{f8ff}")
                 .getDocuments()
             
