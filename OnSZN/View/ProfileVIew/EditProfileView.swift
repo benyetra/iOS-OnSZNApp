@@ -42,35 +42,37 @@ struct EditProfileView: View {
     @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
 
     var body: some View {
-        VStack(spacing:10) {
-            Text("Edit your profile")
-                .font(.largeTitle.bold())
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                .hAlign(.leading)
-            
-            Text("Update your profile information")
-                .font(.title3)
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                .hAlign(.leading)
-            
-            //MARK: Optimize Size
-            ViewThatFits {
-                ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing:10) {
+                Text("Edit your profile")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .hAlign(.leading)
+                
+                Text("Update your profile information")
+                    .font(.title3)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .hAlign(.leading)
+                
+                //MARK: Optimize Size
+                ViewThatFits {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        HelperView()
+                    }
                     HelperView()
                 }
-                HelperView()
-            }
-            //MARK: Cancel Button
-            HStack {
-                Text("Want to revisit this later?")
-                    .foregroundColor(.gray)
-                Button("Cancel") {
-                    dismiss()
+                //MARK: Cancel Button
+                HStack {
+                    Text("Want to revisit this later?")
+                        .foregroundColor(.gray)
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                    .fontWeight(.bold)
                 }
-                .fontWeight(.bold)
+                .font(.callout)
+                .vAlign(.bottom)
             }
-            .font(.callout)
-            .vAlign(.bottom)
         }
         .vAlign(.top)
         .padding(15)

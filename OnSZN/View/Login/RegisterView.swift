@@ -38,37 +38,39 @@ struct RegisterView: View {
     @AppStorage("user_UID") var userUID: String = ""
     @AppStorage("selected_team") var storedSelectedTeam: String = "NBA"
     var body:some View {
-        VStack(spacing:10) {
-            Text("Lets register your \naccount")
-                .font(.largeTitle.bold())
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                .hAlign(.leading)
-            
-            Text("Welcome to the league!")
-                .font(.title3)
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                .hAlign(.leading)
-            
-            //MARK: Optimize Size
-            ViewThatFits {
-                ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing:10) {
+                Text("Lets register your \naccount")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .hAlign(.leading)
+                
+                Text("Welcome to the league!")
+                    .font(.title3)
+                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .hAlign(.leading)
+                
+                //MARK: Optimize Size
+                ViewThatFits {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        HelperView()
+                    }
                     HelperView()
                 }
-                HelperView()
-            }
-            
-            //MARK: Register Button
-            HStack {
-                Text("Already have an account?")
-                    .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                Button("Login Now") {
-                    dismiss()
+                
+                //MARK: Register Button
+                HStack {
+                    Text("Already have an account?")
+                        .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                    Button("Login Now") {
+                        dismiss()
+                    }
+                    .fontWeight(.bold)
+                    .foregroundColor(.cgBlue)
                 }
-                .fontWeight(.bold)
-                .foregroundColor(.cgBlue)
+                .font(.callout)
+                .vAlign(.bottom)
             }
-            .font(.callout)
-            .vAlign(.bottom)
         }
         .vAlign(.top)
         .padding(15)
