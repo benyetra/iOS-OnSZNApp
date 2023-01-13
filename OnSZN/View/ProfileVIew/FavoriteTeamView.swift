@@ -49,9 +49,9 @@ struct FavTeams: Hashable {
 
 struct FavoriteTeamView: View {
     @Binding var selection: String?
-    @State private var selectedTeam: FavTeams?
+    @State private var selectedFavTeam: FavTeams?
     @State var teamTopic: String = ""
-    @AppStorage("selected_team") private var storedSelectedTeam: String = "NBA"
+    @AppStorage("selected_fav_team") private var storedSelectedFavTeam: String = "NBA"
     
     
     var body: some View {
@@ -65,8 +65,8 @@ struct FavoriteTeamView: View {
             List {
                 ForEach(favTeams, id: \.self) { favTeams in
                     Button(action: {
-                        self.selectedTeam = favTeams
-                        storedSelectedTeam = self.selectedTeam?.icon ?? "NBA"
+                        self.selectedFavTeam = favTeams
+                        storedSelectedFavTeam = self.selectedFavTeam?.icon ?? "NBA"
                     }) {
                         HStack {
                             Image(favTeams.icon)
@@ -75,10 +75,10 @@ struct FavoriteTeamView: View {
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                                 .shadow(radius: 5)
-                                .opacity(self.selectedTeam == favTeams ? 1 : 0.5)
+                                .opacity(self.selectedFavTeam == favTeams ? 1 : 0.5)
                             Text(favTeams.name)
                                 .font(.body)
-                                .foregroundColor(self.selectedTeam == favTeams ? Color.cgBlue : Color.gray)
+                                .foregroundColor(self.selectedFavTeam == favTeams ? Color.cgBlue : Color.gray)
                         }
                     }
                 }
