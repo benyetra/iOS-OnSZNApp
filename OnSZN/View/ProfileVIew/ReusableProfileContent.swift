@@ -5,21 +5,21 @@
 //  Created by Bennett Yetra on 12/28/22.
 //
 
+
 import SwiftUI
 import SDWebImageSwiftUI
 
 struct ReusableProfileContent: View {
     var user: User
     @State private var fetchedPosts: [Post] = []
-    @State private var showLightbox = false
-    @State private var selection: String?
-    @AppStorage("selected_fav_team") var storedSelectedFavoriteTeam: String = "NBA"
     @Environment(\.colorScheme) private var colorScheme
+    @State private var showLightbox = false
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack{
-                HStack(spacing: 12) {
-                    VStack {
+                HStack(spacing: 12){
+                    VStack() {
                         WebImage(url: user.userProfileURL).placeholder {
                             // MARK: Placeholder Image
                             Image("NullProfile")
@@ -29,9 +29,10 @@ struct ReusableProfileContent: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
+                        
                         .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
                         .overlay(
-                            Image("\(storedSelectedFavoriteTeam)")
+                            Image("\(user.favoriteTeam)")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30)
@@ -43,41 +44,32 @@ struct ReusableProfileContent: View {
                             self.showLightbox = true
                         }
                     }
-                     
+                    
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("@\(user.username)")
+                        Text(user.username)
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        
                         Text(user.userBio)
                             .font(.caption)
-                            .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
+                            .foregroundColor(.gray)
                             .lineLimit(3)
                         
-                        //MARK: Displaying Bio Link, If Given While Signing Up Profile Page
-                        if let bioLink = URL(string: user.userBioLink) {
+                        // MARK: Displaying Bio Link, If Given While Signing Up Profile Page
+                        if let bioLink = URL(string: user.userBioLink){
                             Link(user.userBioLink, destination: bioLink)
                                 .font(.callout)
-                                .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.cgBlue)
                                 .tint(.blue)
                                 .lineLimit(1)
                         }
                     }
-                    .sheet(isPresented: $showLightbox) {
-                        WebImage(url: self.user.userProfileURL)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .onTapGesture {
-                                self.showLightbox = false
-                            }
-                    }
                     .hAlign(.leading)
                 }
                 
-                Text ("Post's")
+                Text("Post's")
                     .font(.title2)
                     .fontWeight(.semibold)
-                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                    .foregroundColor(.black)
                     .hAlign(.leading)
                     .padding(.vertical,15)
                 
