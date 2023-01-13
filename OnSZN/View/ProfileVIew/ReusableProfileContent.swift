@@ -29,7 +29,6 @@ struct ReusableProfileContent: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
-                        
                         .overlay(Circle().stroke(colorScheme == .light ? Color.cgBlue : Color.platinum, lineWidth: 1))
                         .overlay(
                             Image("\(user.favoriteTeam)")
@@ -42,6 +41,14 @@ struct ReusableProfileContent: View {
                         )
                         .onTapGesture {
                             self.showLightbox = true
+                        }
+                        .sheet(isPresented: $showLightbox) {
+                            WebImage(url: self.user.userProfileURL)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .onTapGesture {
+                                self.showLightbox = false
+                                }
                         }
                     }
                     
