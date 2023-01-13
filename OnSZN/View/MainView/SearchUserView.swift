@@ -36,7 +36,7 @@ struct SearchUserView: View {
         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
         .searchable(text: $searchText)
         .textInputAutocapitalization(.never)
-        .textCase(.lowercase)
+        .autocorrectionDisabled()
         .onSubmit(of: .search, {
             searchUsers()
         })
