@@ -132,13 +132,25 @@ struct RegisterView: View {
                 
                 Spacer(minLength: 5)
                     .padding(15)
-                TextField("Username", text:$userName)
+                
+                TextField("Username", text: $userName)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.nickname)
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
                     .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-                
+                    .onAppear {
+                        if !self.userName.hasPrefix("@") {
+                            self.userName = "@" + self.userName
+                        }
+                    }
+                    .onChange(of: userName, perform: { value in
+                        if value.contains(where: { !$0.isLetter && !$0.isNumber }) {
+                            self.userName = String(value.filter { $0.isLetter || $0.isNumber })
+                        }
+                    })
+
+
                 TextField("Email", text:$emailID)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.emailAddress)
@@ -172,7 +184,7 @@ struct RegisterView: View {
                     FavoriteTeamView(selection: $selection)
                     Text("Swipe Down to Dismiss")
                         .font(.subheadline)
-                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                 }
                 .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                 .hAlign(.center)
