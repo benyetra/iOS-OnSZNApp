@@ -46,7 +46,7 @@ struct ProfileView: View {
                         //3. Logout
                         //4. Delete Account
                         Button("Edit Profile") { editAccount.toggle()}
-                        Button("Select Favorite Team") { favoriteTeam.toggle()}
+//                        Button("Select Favorite Team") { favoriteTeam.toggle()}
                         Button("Logout", action: logOutUser)
                         Button("Delete Account", role: .destructive, action: deleteAccount)
                     } label: {

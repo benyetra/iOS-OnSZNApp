@@ -136,12 +136,22 @@ struct EditProfileView: View {
             
             Spacer(minLength: 5)
             
-            TextField("Username", text:$userName)
+            TextField("Username", text: $userName)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
-                .textContentType(.username)
+                .textContentType(.nickname)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
                 .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
+                .onAppear {
+                    if !self.userName.hasPrefix("@") {
+                        self.userName = "@" + self.userName
+                    }
+                }
+                .onChange(of: userName, perform: { value in
+                    if value.contains(where: { !$0.isLetter && !$0.isNumber }) {
+                        self.userName = String(value.filter { $0.isLetter || $0.isNumber })
+                    }
+                })
             
             TextField("Email", text:$emailID)
                 .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
@@ -167,13 +177,10 @@ struct EditProfileView: View {
                 favoriteTeam.toggle()
             }.sheet(isPresented: $favoriteTeam) {
                 FavoriteTeamView(selection: $selection)
-                Text("Swipe Down to Dismiss")
-                    .font(.subheadline)
-                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
             }
             .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
             .hAlign(.center)
-            .fillView(.oxfordBlue)
+            .fillView(.cgBlue)
             
                 Button(action: {
                     updateUserInfo { (error) in

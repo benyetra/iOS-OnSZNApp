@@ -132,13 +132,25 @@ struct RegisterView: View {
                 
                 Spacer(minLength: 5)
                     .padding(15)
-                TextField("Username", text:$userName)
+                
+                TextField("Username", text: $userName)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.nickname)
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
                     .border(1, colorScheme == .light ? Color.cgBlue : Color.platinum.opacity(0.5))
-                
+                    .onAppear {
+                        if !self.userName.hasPrefix("@") {
+                            self.userName = "@" + self.userName
+                        }
+                    }
+                    .onChange(of: userName, perform: { value in
+                        if value.contains(where: { !$0.isLetter && !$0.isNumber }) {
+                            self.userName = String(value.filter { $0.isLetter || $0.isNumber })
+                        }
+                    })
+
+
                 TextField("Email", text:$emailID)
                     .foregroundColor(colorScheme == .light ? Color.gray : Color.platinum)
                     .textContentType(.emailAddress)
@@ -169,14 +181,20 @@ struct RegisterView: View {
                 Button("Select Fandom") {
                     favoriteTeam.toggle()
                 }.sheet(isPresented: $favoriteTeam) {
+                    HStack {
+                        Text("Select The NBA Topic:")
+                            .font(.headline)
+                            .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
+                    }
+                    .padding(EdgeInsets(top: 20, leading: 21, bottom: 0, trailing: 21))
                     FavoriteTeamView(selection: $selection)
                     Text("Swipe Down to Dismiss")
                         .font(.subheadline)
-                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
                 }
                 .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                 .hAlign(.center)
-                .fillView(.oxfordBlue)
+                .fillView(.cgBlue)
             }
             
             Button(action: registerUser) {
