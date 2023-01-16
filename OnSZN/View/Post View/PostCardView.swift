@@ -23,51 +23,53 @@ struct PostCardView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            WebImage(url: post.userProfileURL)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 35, height: 35)
-                .clipShape(Circle())
-                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-            
-            VStack(alignment: .leading, spacing: 6) {
-                Text("@\(post.userName)")
+        NavigationLink(destination: DetailView(post: post)) {
+            HStack(alignment: .top, spacing: 12) {
+                WebImage(url: post.userProfileURL)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 35, height: 35)
+                    .clipShape(Circle())
                     .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                    .font(.callout)
-                    .fontWeight(.semibold)
-                Text(post.publishedDate.formatted(date: .numeric, time: .shortened))
-                    .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Text(post.text)
-                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                    .textSelection(.enabled)
-                    .padding(.vertical, 8)
                 
-                /// Post Image if any
-                if let postImageURL = post.imageURL {
-                    GeometryReader {
-                        let size = $0.size
-                        WebImage(url: postImageURL)
-                            .resizable()
-                            .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: size.width, height: size.height)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .onTapGesture {
-                                self.showLightbox = true
-                            }
-                    }
-                    .frame(height: 200)
-                }
-                Text(post.teamTopic)
-                    .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
-                    .hAlign(.trailingFirstTextBaseline)
-                    .font(.caption)
-                    .fontWeight(.semibold)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("@\(post.userName)")
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                    Text(post.publishedDate.formatted(date: .numeric, time: .shortened))
+                        .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    Text(post.text)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .textSelection(.enabled)
+                        .padding(.vertical, 8)
                     
-                PostInteraction()
+                    /// Post Image if any
+                    if let postImageURL = post.imageURL {
+                        GeometryReader {
+                            let size = $0.size
+                            WebImage(url: postImageURL)
+                                .resizable()
+                                .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: size.width, height: size.height)
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                .onTapGesture {
+                                    self.showLightbox = true
+                                }
+                        }
+                        .frame(height: 200)
+                    }
+                    Text(post.teamTopic)
+                        .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
+                        .hAlign(.trailingFirstTextBaseline)
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                    
+                    PostInteraction()
+                }
             }
         }
         .sheet(isPresented: $showLightbox) {

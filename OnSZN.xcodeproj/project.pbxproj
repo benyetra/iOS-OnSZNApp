@@ -36,6 +36,7 @@
 		355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EB4E6295CFAB500F274D7 /* PostCardView.swift */; };
 		356FE86B295E629A00FD782B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FE86A295E629A00FD782B /* EditProfileView.swift */; };
 		357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */; };
+		358BCECA29760834000A7F9C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BCEC929760834000A7F9C /* DetailView.swift */; };
 		35B7E003296F43F7004D62A4 /* FavoriteTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7E002296F43F7004D62A4 /* FavoriteTeamView.swift */; };
 		35EA2F53295DCE2500CEF35E /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F52295DCE2500CEF35E /* SearchUserView.swift */; };
 		35EA2F55295E04D600CEF35E /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2F54295E04D600CEF35E /* CustomColors.swift */; };
@@ -92,6 +93,7 @@
 		355EB4E6295CFAB500F274D7 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		356FE86A295E629A00FD782B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		357DC260296872C0009DB6AD /* ReusableTeamPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTeamPostsView.swift; sourceTree = "<group>"; };
+		358BCEC929760834000A7F9C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		35B7E002296F43F7004D62A4 /* FavoriteTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTeamView.swift; sourceTree = "<group>"; };
 		35B7E006296FBCB7004D62A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		35EA2F52295DCE2500CEF35E /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				355EB4E4295CF36500F274D7 /* ReusablePostsView.swift */,
 				355EB4E2295CE8D900F274D7 /* PostsView.swift */,
 				355EB4E6295CFAB500F274D7 /* PostCardView.swift */,
+				358BCEC929760834000A7F9C /* DetailView.swift */,
 			);
 			path = "Post View";
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				357DC261296872C0009DB6AD /* ReusableTeamPostsView.swift in Sources */,
 				35B7E003296F43F7004D62A4 /* FavoriteTeamView.swift in Sources */,
 				3552DCB5295CAAA80074DCCD /* MainView.swift in Sources */,
+				358BCECA29760834000A7F9C /* DetailView.swift in Sources */,
 				35EA4F8929662146002C6936 /* TeamView.swift in Sources */,
 				355EB4DF295CBC6500F274D7 /* CreateNewPost.swift in Sources */,
 				355EB4E7295CFAB500F274D7 /* PostCardView.swift in Sources */,
