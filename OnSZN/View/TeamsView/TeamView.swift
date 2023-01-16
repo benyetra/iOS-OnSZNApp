@@ -76,7 +76,7 @@ struct ContentsView: View {
             Team(name: "Denver Nuggets", icon: "Nuggets", slogan: "#MileHighBasketball", color: .blue),
             Team(name: "Oklahmoma City Thunder", icon: "Thunder", slogan: "#ThunderUp", color: .blue),
             Team(name: "Utah Jazz", icon: "Jazz", slogan: "#TakeNote", color: .green),
-            Team(name: "Portland Trail Blazers", icon: "Blazers", slogan: "#RipCity", color: .red),
+            Team(name: "Portland Trail Blazers", icon: "Trail Blazers", slogan: "#RipCity", color: .red),
             Team(name: "Minnesota Timberwolves", icon: "Timberwolves", slogan: "#MinnesotaNice", color: .blue),
             Team(name: "Los Angeles Lakers", icon: "Lakers", slogan: "#LakerNation", color: .purple),
             Team(name: "Los Angeles Clippers", icon: "Clippers", slogan: "#LobCity", color: .red),

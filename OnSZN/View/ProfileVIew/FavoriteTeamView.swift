@@ -50,6 +50,7 @@ struct FavTeams: Hashable {
 struct FavoriteTeamView: View {
     @Binding var selection: String?
     @State private var selectedFavTeam: FavTeams?
+    @Environment(\.colorScheme) private var colorScheme
     @State var teamTopic: String = ""
     @AppStorage("selected_fav_team") private var storedSelectedFavTeam: String = "NBA"
     
@@ -83,6 +84,9 @@ struct FavoriteTeamView: View {
                     }
                 }
             }
+            Text("Swipe Down to Dismiss")
+                .font(.subheadline)
+                .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
             Spacer()
         }

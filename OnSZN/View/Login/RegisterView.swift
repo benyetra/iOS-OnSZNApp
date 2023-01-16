@@ -181,6 +181,12 @@ struct RegisterView: View {
                 Button("Select Fandom") {
                     favoriteTeam.toggle()
                 }.sheet(isPresented: $favoriteTeam) {
+                    HStack {
+                        Text("Select The NBA Topic:")
+                            .font(.headline)
+                            .foregroundColor(colorScheme == .light ? Color.cgBlue : Color.platinum)
+                    }
+                    .padding(EdgeInsets(top: 20, leading: 21, bottom: 0, trailing: 21))
                     FavoriteTeamView(selection: $selection)
                     Text("Swipe Down to Dismiss")
                         .font(.subheadline)
@@ -188,7 +194,7 @@ struct RegisterView: View {
                 }
                 .foregroundColor(colorScheme == .light ? Color.white : Color.platinum)
                 .hAlign(.center)
-                .fillView(.oxfordBlue)
+                .fillView(.cgBlue)
             }
             
             Button(action: registerUser) {
