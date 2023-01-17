@@ -87,9 +87,8 @@ struct PostCardView: View {
                 Menu {
                     Button ("Delete Post", role: .destructive, action: deletePost)
                 } label: {
-                    Image(systemName: "ellipsis")
-                        .font(.caption)
-                        .rotationEffect(.init(degrees: -90))
+                    Image(systemName: "trash")
+                        .font(.subheadline)
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         .padding(8)
                         .contentShape(Rectangle())

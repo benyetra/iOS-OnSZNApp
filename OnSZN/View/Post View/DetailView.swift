@@ -20,6 +20,8 @@ struct DetailView: View {
     @State private var userUID: String = ""
     @State private var docListner: ListenerRegistration?
     @State private var showLightbox = false
+    var basedOnUID: Bool = false
+    var uid: String = ""
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dismiss) var dismiss
     
@@ -88,9 +90,8 @@ struct DetailView: View {
                 Menu {
                     Button ("Delete Post", role: .destructive, action: deletePost)
                 } label: {
-                    Image(systemName: "ellipsis")
-                        .font(.caption)
-                        .rotationEffect(.init(degrees: -90))
+                    Image(systemName: "trash")
+                        .font(.subheadline)
                         .foregroundColor(colorScheme == .light ? Color.oxfordBlue : Color.platinum)
                         .padding(8)
                         .contentShape(Rectangle())
